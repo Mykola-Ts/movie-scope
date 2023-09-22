@@ -76,6 +76,7 @@ const Movies = () => {
 
     setQuery(searchQuery);
     setRandomID(nanoid());
+    
     searchParams.set('query', searchQuery);
     setSearchParams(searchParams);
 
