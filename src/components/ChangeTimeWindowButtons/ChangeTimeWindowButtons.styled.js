@@ -31,13 +31,14 @@ export const ChangePeriodBtn = styled.button`
     border-color var(--transition-duration) var(--transition-timing-function),
     outline var(--transition-duration) var(--transition-timing-function);
 
-  @media screen and (min-width: 768px) {
-    min-width: 180px;
-  }
-
-  &:is(:hover, :focus) {
+  &:is(:hover, :focus),
+  &.active {
     background-color: var(--white-color);
     border-color: var(--black-color);
     outline-color: var(--white-color);
+  }
+
+  @media screen and (min-width: 768px) {
+    min-width: 180px;
   }
 `;

@@ -15,7 +15,8 @@ export const ChangeTimeWindowButtons = ({
         <ChangePeriodBtn
           type="button"
           name="day"
-          onClick={evt => chancheTimeWindow(evt)}
+          className={timeWindow === 'day' ? 'active' : ''}
+          onClick={evt => chancheTimeWindow(evt.target.name)}
         >
           Trending today
         </ChangePeriodBtn>
@@ -24,8 +25,8 @@ export const ChangeTimeWindowButtons = ({
         <ChangePeriodBtn
           type="button"
           name="week"
-          disabled={timeWindow === 'week'}
-          onClick={evt => chancheTimeWindow(evt)}
+          className={timeWindow === 'week' ? 'active' : ''}
+          onClick={evt => chancheTimeWindow(evt.target.name)}
         >
           Trending this week
         </ChangePeriodBtn>

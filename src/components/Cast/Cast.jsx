@@ -7,7 +7,7 @@ import { Loader } from 'components/Loader/Loader';
 import { List, ListItem, NoCastText } from './Cast.styled';
 
 const Cast = () => {
-  const [movieCast, setMovieCast] = useState({});
+  const [movieCast, setMovieCast] = useState([]);
   const [configurationImages, setConfigurationImages] = useState({
     baseUrl: 'http://image.tmdb.org/t/p/',
     profileSizes: '342',

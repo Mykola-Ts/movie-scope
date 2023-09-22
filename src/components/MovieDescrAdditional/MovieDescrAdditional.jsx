@@ -6,17 +6,21 @@ import {
   Wrapper,
 } from './MovieDescrAdditional.styled';
 
-export const MovieDescrAdditional = () => {
+export const MovieDescrAdditional = ({ location = {} }) => {
   return (
     <Wrapper>
       <Title>Additional information</Title>
 
       <Links>
         <LinksItem>
-          <StyledNavLink to="cast">Show the cast</StyledNavLink>
+          <StyledNavLink to="cast" state={{ from: location }}>
+            Show the cast
+          </StyledNavLink>
         </LinksItem>
         <LinksItem>
-          <StyledNavLink to="reviews">Show reviews</StyledNavLink>
+          <StyledNavLink to="reviews" state={{ from: location }}>
+            Show reviews
+          </StyledNavLink>
         </LinksItem>
       </Links>
     </Wrapper>

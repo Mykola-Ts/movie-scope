@@ -5,7 +5,7 @@ import { fetchDetails } from 'components/services/api';
 import { MoviesListItem } from 'components/MoviesListItem/MoviesListItem';
 import { List, ListItem, StyledLink } from './MoviesList.styled';
 
-export const MoviesList = ({ movies, state }) => {
+export const MoviesList = ({ movies = [], state = {} }) => {
   const [configurationImages, setConfigurationImages] = useState({
     baseUrl: 'http://image.tmdb.org/t/p/',
     posterSizes: '342',

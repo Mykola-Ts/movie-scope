@@ -17,9 +17,5 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  padding: 32px 0;
-
-  @media screen and (min-width: 1440px) {
-    padding: 32px 0 80px;
-  }
+  padding: 32px 0 80px;
 `;

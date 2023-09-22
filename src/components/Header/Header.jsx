@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import { BiCameraMovie } from 'react-icons/bi';
 import { Container } from 'components/SharedLayout/SharedLayout.styled';
 import {
@@ -9,11 +10,13 @@ import {
 } from './Header.styled';
 
 export const Header = () => {
+  const location = useLocation();
+
   return (
     <NavHeader>
       <Container>
         <Navigation>
-          <Logo to="/">
+          <Logo to="/" onClick={() => location.reload()}>
             <BiCameraMovie size={25} /> MOVIES
           </Logo>
 

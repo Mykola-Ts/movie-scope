@@ -1,5 +1,5 @@
 import { Suspense, useEffect, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { fetchDetails, fetchMovieDetails } from 'components/services/api';
 import { MovieDescr } from 'components/MovieDescr/MovieDescr';
@@ -15,6 +15,7 @@ const MovieDetails = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
     setIsLoading(true);
@@ -86,7 +87,7 @@ const MovieDetails = () => {
           movieDetails={movieDetails}
           configurationImages={configurationImages}
         />
-        <MovieDescrAdditional />
+        <MovieDescrAdditional location={location.state.from} />
 
         <Suspense fallback={<Loader text="Loading data, please wait..." />}>
           <Outlet />

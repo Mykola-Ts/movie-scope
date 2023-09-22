@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { fetchMovies } from 'components/services/api';
 import { MoviesList } from 'components/MoviesList/MoviesList';
@@ -7,9 +8,13 @@ import { Loader } from 'components/Loader/Loader';
 import { Title } from './Home.styled';
 
 const Home = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [movies, setMovies] = useState([]);
-  const [timeWindow, setTimeWindow] = useState('day');
+  const [timeWindow, setTimeWindow] = useState(
+    searchParams.get('time_window') ?? 'day'
+  );
   const [isLoading, setIsLoading] = useState(false);
+  const location = useLocation();
   const controllerRef = useRef();
 
   useEffect(() => {
@@ -56,8 +61,17 @@ const Home = () => {
     };
   }, [timeWindow]);
 
-  const chancheTimeWindow = evt => {
-    setTimeWindow(evt.target.name === 'day' ? 'day' : 'week');
+  const chancheTimeWindow = timeWindow => {
+    if (timeWindow === 'week') {
+      searchParams.set('time_window', timeWindow);
+      setSearchParams(searchParams);
+      setTimeWindow('week');
+
+      return;
+    }
+
+    setTimeWindow('day');
+    setSearchParams({});
   };
 
   return (
@@ -72,7 +86,7 @@ const Home = () => {
           <Title>
             {timeWindow === 'day' ? 'Trending today' : 'Trending this week'}
           </Title>
-          <MoviesList movies={movies} state={{ from: '/' }} />
+          <MoviesList movies={movies} state={{ from: location }} />
         </>
       )}
 

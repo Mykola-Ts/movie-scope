@@ -7,7 +7,7 @@ import { Loader } from 'components/Loader/Loader';
 import { List, ListItem, NoReviewText } from './Reviews.styled';
 
 const Reviews = () => {
-  const [movieReviews, setMovieReviews] = useState({});
+  const [movieReviews, setMovieReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
 
