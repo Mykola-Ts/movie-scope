@@ -13,7 +13,7 @@ import {
 } from './MoviesListItem.styled';
 
 export const MoviesListItem = ({ movies = {}, configurationImages = {} }) => {
-  const { baseUrl, posterSizes } = configurationImages;
+  const { baseUrl = '', posterSizes = [] } = configurationImages;
   const { title, release_date, adult, poster_path, vote_average } = movies;
   const posterSize = posterSizes[3];
   const posterSrc = poster_path
