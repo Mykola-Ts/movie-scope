@@ -1,5 +1,11 @@
 import { IoWarningOutline } from 'react-icons/io5';
 
+export const configurationImages = {
+  baseUrl: 'http://image.tmdb.org/t/p/',
+  posterSize: 342,
+  profileSize: 185,
+};
+
 export const toastOptions = {
   success: {
     style: {

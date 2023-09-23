@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import Rating from 'react-rating';
 import posterPlaceholder from '../../img/poster-placeholder.jpg';
+import { configurationImages } from 'helpers/helpers';
 import {
   Adult,
   Descr,
@@ -12,12 +13,17 @@ import {
   TwotoneStar,
 } from './MoviesListItem.styled';
 
-export const MoviesListItem = ({ movies = {}, configurationImages = {} }) => {
-  const { baseUrl = '', posterSizes = [] } = configurationImages;
-  const { title, release_date, adult, poster_path, vote_average } = movies;
-  const posterSize = posterSizes[3];
+export const MoviesListItem = ({ movies = {} }) => {
+  const { baseUrl, posterSize } = configurationImages;
+  const {
+    title = '',
+    release_date,
+    adult,
+    poster_path,
+    vote_average = 0,
+  } = movies;
   const posterSrc = poster_path
-    ? `${baseUrl}/${posterSize}/${poster_path}`
+    ? `${baseUrl}/w${posterSize}/${poster_path}`
     : posterPlaceholder;
   const releaseDate = new Date(release_date);
   const releaseYear = releaseDate.getFullYear() || null;
@@ -28,11 +34,11 @@ export const MoviesListItem = ({ movies = {}, configurationImages = {} }) => {
         src={posterSrc}
         alt={`Poster for the movie ${title}`}
         width={posterSize}
-        height={513}
+        height={posterSize * 1.5}
       />
 
       <Descr>
-        <Title>{title} </Title>
+        {title && <Title>{title} </Title>}
 
         <DescrWrapper>
           <Rating
@@ -54,5 +60,4 @@ export const MoviesListItem = ({ movies = {}, configurationImages = {} }) => {
 
 MoviesListItem.propTypes = {
   movies: PropTypes.object.isRequired,
-  state: PropTypes.object,
 };

@@ -12,7 +12,7 @@ export const Loader = ({ text }) => {
         width="72"
         visible={true}
       />
-      <Text>{text}</Text>
+      {text && <Text>{text}</Text>}
     </Wrapper>
   );
 };

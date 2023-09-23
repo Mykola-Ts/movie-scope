@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import { fetchMovies } from 'components/services/api';
+import { fetchMovies } from 'services/api';
 import { MoviesList } from 'components/MoviesList/MoviesList';
 import { ChangeTimeWindowButtons } from 'components/ChangeTimeWindowButtons/ChangeTimeWindowButtons';
 import { Loader } from 'components/Loader/Loader';

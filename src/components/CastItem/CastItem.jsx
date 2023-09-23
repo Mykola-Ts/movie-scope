@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import photoPlaceholder from '../../img/avatar-placeholder.jpg';
+import { configurationImages } from 'helpers/helpers';
 import {
   Descr,
   DescrItem,
@@ -8,23 +9,27 @@ import {
   Photo,
 } from './CastItem.styled';
 
-export const CastItem = ({ castItem = {}, configurationImages = {} }) => {
+export const CastItem = ({ castItem = {} }) => {
   const {
     name = '',
     character = '',
     popularity = 0,
     profile_path = '',
   } = castItem;
-  const { baseUrl = '', profileSizes = [] } = configurationImages;
-  const profileSize = profileSizes[1];
+  const { baseUrl, profileSize } = configurationImages;
   const posterSrc = profile_path
-    ? `${baseUrl}/${profileSize}/${profile_path}`
+    ? `${baseUrl}/w${profileSize}/${profile_path}`
     : photoPlaceholder;
   const popularityItem = popularity.toFixed(1);
 
   return (
     <>
-      <Photo src={posterSrc} alt={name} width={profileSize} height={177} />
+      <Photo
+        src={posterSrc}
+        alt={name}
+        width={profileSize}
+        height={profileSize * 1.5}
+      />
 
       <Descr>
         <Name>{name}</Name>
@@ -41,5 +46,4 @@ export const CastItem = ({ castItem = {}, configurationImages = {} }) => {
 
 CastItem.propTypes = {
   castItem: PropTypes.object.isRequired,
-  configurationImages: PropTypes.object.isRequired,
 };

@@ -1,23 +1,26 @@
 import { Suspense, useEffect, useState } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import { fetchDetails, fetchMovieDetails } from 'components/services/api';
+import { fetchMovieDetails } from 'services/api';
 import { MovieDescr } from 'components/MovieDescr/MovieDescr';
 import { MovieDescrAdditional } from 'components/MovieDescrAdditional/MovieDescrAdditional';
 import { ToBackLink } from 'components/ToBackLink/ToBackLink';
 import { Loader } from 'components/Loader/Loader';
 
 const MovieDetails = () => {
-  const [movieDetails, setMovieDetails] = useState({});
-  const [configurationImages, setConfigurationImages] = useState({
-    baseUrl: 'http://image.tmdb.org/t/p/',
-    posterSizes: 'w342',
-  });
+  const [movieDetails, setMovieDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
   const location = useLocation();
 
   useEffect(() => {
+    if (!movieId) {
+      toast.remove();
+      toast.error('Oops, something went wrong. Try reloading the page.');
+
+      return;
+    }
+
     setIsLoading(true);
 
     const controller = new AbortController();
@@ -45,49 +48,17 @@ const MovieDetails = () => {
     };
   }, [movieId]);
 
-  useEffect(() => {
-    const controller = new AbortController();
-
-    async function fetchConfigurationImages() {
-      try {
-        const data = await fetchDetails(controller);
-
-        if (!data.images) {
-          return;
-        }
-
-        const { base_url, poster_sizes } = data.images;
-
-        setConfigurationImages({
-          baseUrl: base_url,
-          posterSizes: poster_sizes,
-        });
-      } catch (error) {
-        if (error.code !== 'ERR_CANCELED') {
-          toast.remove();
-          toast.error('Oops, something went wrong. Try reloading the page.');
-        }
-      }
-    }
-
-    fetchConfigurationImages();
-
-    return () => {
-      controller.abort();
-      toast.remove();
-    };
-  }, []);
-
   return (
     <main>
       <div>
         <ToBackLink />
 
-        <MovieDescr
-          movieDetails={movieDetails}
-          configurationImages={configurationImages}
-        />
-        <MovieDescrAdditional location={location.state.from} />
+        {movieDetails && (
+          <>
+            <MovieDescr movieDetails={movieDetails} />
+            <MovieDescrAdditional location={location.state?.from ?? '/'} />
+          </>
+        )}
 
         <Suspense fallback={<Loader text="Loading data, please wait..." />}>
           <Outlet />

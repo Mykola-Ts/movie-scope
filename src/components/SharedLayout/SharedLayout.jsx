@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import { toastContainerStyle, toastOptions } from 'components/helpers/helpers';
+import { toastContainerStyle, toastOptions } from 'helpers/helpers';
 import { GlobalStyle } from 'components/GlobalStyle';
 import { ToTopButton } from 'components/ToTopBtn/ToTopBtn';
 import { Header } from 'components/Header/Header';

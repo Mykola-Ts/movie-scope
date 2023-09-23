@@ -2,8 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-hot-toast';
-import { fetchMovieByQuery } from 'components/services/api';
-import { toastWarningOptions } from 'components/helpers/helpers';
+import { fetchMovieByQuery } from 'services/api';
 import { MoviesList } from 'components/MoviesList/MoviesList';
 import { MoviesSearchForm } from 'components/MoviesSearchForm/MoviesSearchForm';
 import { Loader } from 'components/Loader/Loader';
@@ -62,41 +61,18 @@ const Movies = () => {
     };
   }, [query, randomID]);
 
-  const onSearch = async evt => {
-    evt.preventDefault();
-
-    const searchQuery = evt.target.query.value.trim();
-
-    if (!searchQuery) {
-      toast.remove();
-      toast('Input field is empty. Enter search query!', toastWarningOptions);
-
-      return;
-    }
-
-    setQuery(searchQuery);
+  const onSearch = query => {
+    setQuery(query);
     setRandomID(nanoid());
-    
-    searchParams.set('query', searchQuery);
-    setSearchParams(searchParams);
 
-    evt.target.reset();
-
-    return () => {
-      toast.remove();
-    };
-  };
-
-  const onReset = evt => {
-    const form = evt.target.closest('form');
-
-    form.reset();
+    searchParams.set('query', query);
+    setSearchParams({searchParams});
   };
 
   return (
     <main>
       <div>
-        <MoviesSearchForm onSearch={onSearch} onReset={onReset} />
+        <MoviesSearchForm onSearch={onSearch} />
 
         {movies.length > 0 && (
           <MoviesList movies={movies} state={{ from: location }} />

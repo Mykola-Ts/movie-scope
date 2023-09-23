@@ -3,6 +3,7 @@ import Rating from 'react-rating';
 import { AiOutlineStar, AiTwotoneStar } from 'react-icons/ai';
 import { FiExternalLink } from 'react-icons/fi';
 import posterPlaceholder from '../../img/poster-placeholder.jpg';
+import { configurationImages } from 'helpers/helpers';
 import {
   ListItem,
   DescrValue,
@@ -16,7 +17,7 @@ import {
   ListValues,
 } from './MovieDescr.styled';
 
-export const MovieDescr = ({ movieDetails = {}, configurationImages = {} }) => {
+export const MovieDescr = ({ movieDetails = {} }) => {
   const {
     title = '',
     overview = '',
@@ -36,8 +37,7 @@ export const MovieDescr = ({ movieDetails = {}, configurationImages = {} }) => {
     vote_average = 0,
     vote_count = 0,
   } = movieDetails;
-  const { baseUrl = '', posterSizes = [] } = configurationImages;
-  const posterSize = posterSizes[3];
+  const { baseUrl, posterSize } = configurationImages;
   const date = new Date(release_date);
   const releaseDate = date.toLocaleString('en-US', {
     year: 'numeric',
@@ -46,7 +46,7 @@ export const MovieDescr = ({ movieDetails = {}, configurationImages = {} }) => {
   });
   const releaseYear = date.getFullYear() || null;
   const posterSrc = poster_path
-    ? `${baseUrl}/${posterSize}/${poster_path}`
+    ? `${baseUrl}/w${posterSize}/${poster_path}`
     : posterPlaceholder;
   const moviePopularity = popularity.toFixed(1);
   const voteAverage = vote_average.toFixed(1);
@@ -58,12 +58,7 @@ export const MovieDescr = ({ movieDetails = {}, configurationImages = {} }) => {
       </Title>
 
       <Wrapper>
-        <Poster
-          src={posterSrc}
-          alt={`Poster for the movie ${title}`}
-          width={posterSize}
-          height={513}
-        />
+        <Poster src={posterSrc} alt="Poster" width={posterSize} height={513} />
 
         <List>
           <ListItem>
@@ -173,5 +168,4 @@ export const MovieDescr = ({ movieDetails = {}, configurationImages = {} }) => {
 
 MovieDescr.propTypes = {
   movieDetails: PropTypes.object.isRequired,
-  configurationImages: PropTypes.object.isRequired,
 };

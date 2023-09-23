@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import { fetchMovieDetails } from 'components/services/api';
+import { fetchMovieDetails } from 'services/api';
 import { ReviewsItem } from 'components/ReviewsItem/ReviewsItem';
 import { Loader } from 'components/Loader/Loader';
 import { List, ListItem, NoReviewText } from './Reviews.styled';
@@ -12,6 +12,10 @@ const Reviews = () => {
   const { movieId } = useParams();
 
   useEffect(() => {
+    if (!movieId) {
+      return;
+    }
+
     setIsLoading(true);
 
     const controller = new AbortController();

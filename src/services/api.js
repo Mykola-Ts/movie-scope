@@ -37,11 +37,3 @@ export const fetchMovieByQuery = async (query, controller) => {
 
   return resp.data;
 };
-
-export const fetchDetails = async controller => {
-  const resp = await axios('/configuration', {
-    signal: controller.signal,
-  });
-
-  return resp.data;
-};

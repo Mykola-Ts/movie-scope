@@ -6,7 +6,7 @@ import {
   Wrapper,
 } from './MovieDescrAdditional.styled';
 
-export const MovieDescrAdditional = ({ location = {} }) => {
+export const MovieDescrAdditional = ({ location }) => {
   return (
     <Wrapper>
       <Title>Additional information</Title>
