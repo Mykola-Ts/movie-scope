@@ -18,7 +18,7 @@ export const Logo = styled(Link)`
   font-weight: 700;
   font-size: 18px;
   line-height: 1.33;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
 
   color: currentColor;
 `;

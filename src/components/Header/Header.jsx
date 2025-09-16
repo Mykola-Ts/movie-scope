@@ -17,7 +17,7 @@ export const Header = () => {
       <Container>
         <Navigation>
           <Logo to="/" onClick={() => location.reload()}>
-            <BiCameraMovie size={25} /> MOVIES
+            <BiCameraMovie size={25} /> MovieScope
           </Logo>
 
           <NavList>
