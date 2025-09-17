@@ -8,14 +8,14 @@ export const ScrollToTopBtn = styled(ScrollToTop)`
   z-index: 99;
 
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
   width: 52px;
   height: 52px;
-  padding: 15px;
   border: none;
   border-radius: 50%;
+  padding: 15px;
 
   color: rgba(0, 0, 0, 0.3);
   background-color: #ebedf0;

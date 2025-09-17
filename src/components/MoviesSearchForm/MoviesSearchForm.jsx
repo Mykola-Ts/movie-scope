@@ -11,7 +11,7 @@ import {
 } from './MoviesSearchForm.styled';
 
 export const MoviesSearchForm = ({ onSearch }) => {
-  const onSubmit = evt => {
+  const onSearchMovie = evt => {
     evt.preventDefault();
 
     const searchQuery = evt.target.query.value.trim();
@@ -33,13 +33,11 @@ export const MoviesSearchForm = ({ onSearch }) => {
   };
 
   const onReset = evt => {
-    const form = evt.target.closest('form');
-
-    form.reset();
+    evt.target.closest('form').reset();
   };
 
   return (
-    <SearchbarForm onSubmit={onSubmit}>
+    <SearchbarForm onSubmit={onSearchMovie}>
       <InputLabel>
         <SearchInput type="text" name="query" placeholder="Movie title" />
         <SearchIcon />

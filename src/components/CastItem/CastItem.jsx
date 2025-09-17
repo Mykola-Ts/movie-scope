@@ -9,7 +9,9 @@ import {
   Photo,
 } from './CastItem.styled';
 
-export const CastItem = ({ castItem = {} }) => {
+export const CastItem = ({ castItem }) => {
+  if (!castItem) return;
+
   const {
     name = '',
     character = '',
@@ -33,9 +35,11 @@ export const CastItem = ({ castItem = {} }) => {
 
       <Descr>
         <Name>{name}</Name>
+
         <DescrItem>
           Character: <DescrItemValue>{character}</DescrItemValue>
         </DescrItem>
+
         <DescrItem>
           Popularity: <DescrItemValue>{popularityItem}</DescrItemValue>
         </DescrItem>

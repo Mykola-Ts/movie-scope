@@ -4,8 +4,8 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 export const SearchbarForm = styled.form`
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
   width: 100%;
   margin-bottom: 40px;
@@ -26,9 +26,9 @@ export const SearchInput = styled.input`
   display: block;
 
   width: 100%;
-  padding: 8px 32px;
   border: 2px solid transparent;
   border-radius: 8px;
+  padding: 8px 32px;
 
   overflow: hidden;
 
@@ -70,9 +70,9 @@ export const CloseIcon = styled(AiOutlineClose)`
 
 export const SubmitBtn = styled.button`
   min-width: 100px;
-  padding: 8px 12px;
   border: 2px solid transparent;
   border-radius: 8px;
+  padding: 8px 12px;
 
   color: var(--black-color);
   background-color: var(--gray-color);

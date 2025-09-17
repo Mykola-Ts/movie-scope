@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import { fetchMovieDetails } from 'services/api';
+import { getReviewsMovieById } from 'services/movies';
 import { ReviewsItem } from 'components/ReviewsItem/ReviewsItem';
 import { Loader } from 'components/Loader/Loader';
 import { List, ListItem, NoReviewText } from './Reviews.styled';
@@ -16,29 +16,9 @@ const Reviews = () => {
       return;
     }
 
-    setIsLoading(true);
-
     const controller = new AbortController();
 
-    async function getMovieReviews() {
-      try {
-        const data = await fetchMovieDetails(movieId, '/reviews', controller);
-        const reviews = [...data.results].sort(
-          (a, b) => b.author_details.rating - a.author_details.rating
-        );
-
-        setMovieReviews(reviews);
-      } catch (error) {
-        if (error.code !== 'ERR_CANCELED') {
-          toast.remove();
-          toast.error('Oops, something went wrong. Try reloading the page.');
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    getMovieReviews();
+    getReviewsMovieById(movieId, setMovieReviews, setIsLoading, controller);
 
     return () => {
       controller.abort();
@@ -57,10 +37,10 @@ const Reviews = () => {
           ))}
         </List>
       ) : (
-        <NoReviewText>We don't have any reviews for this movie.</NoReviewText>
+        <NoReviewText>No reviews available for this movie.</NoReviewText>
       )}
 
-      {isLoading && <Loader text="Loading data, please wait..." />}
+      <Loader isLoading={isLoading} />
     </div>
   );
 };

@@ -18,8 +18,9 @@ export const Descr = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    height: 128px;
     gap: 12px;
+
+    height: 128px;
     padding: 12px;
   }
 `;
@@ -40,9 +41,9 @@ export const Title = styled.h3`
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  overflow: hidden;
 
   margin: auto 0;
+  overflow: hidden;
 
   text-align: center;
   font-size: 24px;
@@ -58,8 +59,8 @@ export const Title = styled.h3`
 
 export const DescrWrapper = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const OutlineStar = styled(AiOutlineStar)`
@@ -83,8 +84,8 @@ export const TwotoneStar = styled(AiTwotoneStar)`
 `;
 
 export const DescrYear = styled.span`
-  font-size: 24px;
   font-weight: 700;
+  font-size: 24px;
   line-height: 1.17;
   letter-spacing: -0.96px;
 
@@ -102,8 +103,8 @@ export const Adult = styled.span`
 
   padding: 8px;
 
-  font-size: 24px;
   font-weight: 700;
+  font-size: 24px;
   line-height: 1.17;
   letter-spacing: 0.96px;
 

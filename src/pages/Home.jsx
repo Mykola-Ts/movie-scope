@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import { fetchMovies } from 'services/api';
+import { getTopMovies } from 'services/movies';
 import { MoviesList } from 'components/MoviesList/MoviesList';
-import { ChangeTimeWindowButtons } from 'components/ChangeTimeWindowButtons/ChangeTimeWindowButtons';
+import {
+  ChangeTrendingTimeWindowButtons,
+  trendingTimeWindow,
+} from 'components/ChangeTrendingTimeWindowButtons/ChangeTrendingTimeWindowButtons';
 import { Loader } from 'components/Loader/Loader';
 import { Title } from './Home.styled';
 
@@ -11,49 +14,20 @@ const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [movies, setMovies] = useState([]);
   const [timeWindow, setTimeWindow] = useState(
-    searchParams.get('time_window') ?? 'day'
+    searchParams.get('time_window') ?? trendingTimeWindow.day.value
   );
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
   const controllerRef = useRef();
 
   useEffect(() => {
-    setIsLoading(true);
-
     if (controllerRef.current) {
       controllerRef.current.abort();
     }
 
     controllerRef.current = new AbortController();
 
-    async function fetchTopMovies() {
-      try {
-        const data = await fetchMovies(
-          `trending/movie/${timeWindow}`,
-          controllerRef.current
-        );
-
-        if (!data.results.length) {
-          toast.remove();
-          toast.error(
-            'Sorry, there are no movies matching your search query. Please try again.'
-          );
-
-          return;
-        }
-
-        setMovies(data.results);
-      } catch (error) {
-        if (error.code !== 'ERR_CANCELED') {
-          toast.remove();
-          toast.error('Oops, something went wrong. Try reloading the page.');
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchTopMovies();
+    getTopMovies(timeWindow, setMovies, setIsLoading, controllerRef.current);
 
     return () => {
       controllerRef.current.abort();
@@ -61,36 +35,26 @@ const Home = () => {
     };
   }, [timeWindow]);
 
-  const chancheTimeWindow = timeWindow => {
-    if (timeWindow === 'week') {
-      searchParams.set('time_window', timeWindow);
-      setSearchParams(searchParams);
-      setTimeWindow('week');
-
-      return;
-    }
-
-    setTimeWindow('day');
-    setSearchParams({});
+  const changeTrendingTimeWindow = timeWindow => {
+    searchParams.set('time_window', timeWindow);
+    setSearchParams(searchParams);
+    setTimeWindow(trendingTimeWindow[timeWindow].value);
   };
 
   return (
     <main>
-      <ChangeTimeWindowButtons
+      <ChangeTrendingTimeWindowButtons
         timeWindow={timeWindow}
-        chancheTimeWindow={chancheTimeWindow}
+        changeTimeWindow={changeTrendingTimeWindow}
       />
 
+      <Title>{trendingTimeWindow[timeWindow].title}</Title>
+
       {movies.length > 0 && (
-        <>
-          <Title>
-            {timeWindow === 'day' ? 'Trending today' : 'Trending this week'}
-          </Title>
-          <MoviesList movies={movies} state={{ from: location }} />
-        </>
+        <MoviesList movies={movies} state={{ from: location }} />
       )}
 
-      {isLoading && <Loader text="Loading data, please wait..." />}
+      <Loader isLoading={isLoading} />
     </main>
   );
 };

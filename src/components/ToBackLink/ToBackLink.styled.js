@@ -32,6 +32,7 @@ export const StyledLink = styled(Link)`
     transform-origin: center;
 
     display: block;
+
     width: 100%;
     height: 1.5px;
 

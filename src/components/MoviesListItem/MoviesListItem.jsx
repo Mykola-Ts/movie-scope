@@ -13,15 +13,17 @@ import {
   TwotoneStar,
 } from './MoviesListItem.styled';
 
-export const MoviesListItem = ({ movies = {} }) => {
+export const MoviesListItem = ({ movie }) => {
+  if (!movie) return;
+
   const { baseUrl, posterSize } = configurationImages;
   const {
     title = '',
     release_date,
-    adult,
+    adult = false,
     poster_path,
     vote_average = 0,
-  } = movies;
+  } = movie;
   const posterSrc = poster_path
     ? `${baseUrl}/w${posterSize}/${poster_path}`
     : posterPlaceholder;
@@ -49,6 +51,7 @@ export const MoviesListItem = ({ movies = {} }) => {
             emptySymbol={<OutlineStar color="var(--gold-color)" />}
             fullSymbol={<TwotoneStar color="var(--gold-color)" />}
           />
+
           {releaseYear && <DescrYear>{releaseYear}</DescrYear>}
         </DescrWrapper>
       </Descr>
@@ -59,5 +62,5 @@ export const MoviesListItem = ({ movies = {} }) => {
 };
 
 MoviesListItem.propTypes = {
-  movies: PropTypes.object.isRequired,
+  movie: PropTypes.object.isRequired,
 };

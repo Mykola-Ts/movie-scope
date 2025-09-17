@@ -4,11 +4,10 @@ const parametersRequest = {
   BASE_URL: 'https://api.themoviedb.org/3',
   API_KEY: 'fd540b86f52e72bb99bdb9bba11ffc9d',
 };
-const { BASE_URL, API_KEY } = parametersRequest;
 
-axios.defaults.baseURL = BASE_URL;
+axios.defaults.baseURL = parametersRequest.BASE_URL;
 axios.defaults.method = 'GET';
-axios.defaults.params = { api_key: API_KEY };
+axios.defaults.params = { api_key: parametersRequest.API_KEY };
 
 export const fetchMovies = async (path, controller) => {
   const resp = await axios(path, {
@@ -18,10 +17,10 @@ export const fetchMovies = async (path, controller) => {
   return resp.data;
 };
 
-export const fetchMovieDetails = async (
+export const fetchDetailsMovieById = async (
   movieId,
-  urlParameter = '',
-  controller
+  controller,
+  urlParameter = ''
 ) => {
   const resp = await axios(`/movie/${movieId}${urlParameter}`, {
     signal: controller.signal,

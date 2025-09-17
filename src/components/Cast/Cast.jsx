@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import { fetchMovieDetails } from 'services/api';
+import { getCastMovieById } from 'services/movies';
 import { CastItem } from 'components/CastItem/CastItem';
 import { Loader } from 'components/Loader/Loader';
 import { List, ListItem, NoCastText } from './Cast.styled';
@@ -16,29 +16,9 @@ const Cast = () => {
       return;
     }
 
-    setIsLoading(true);
-
     const controller = new AbortController();
 
-    async function getMovieCast() {
-      try {
-        const data = await fetchMovieDetails(movieId, '/credits', controller);
-        const movieCast = [...data.cast].sort(
-          (a, b) => b.popularity - a.popularity
-        );
-
-        setMovieCast(movieCast);
-      } catch (error) {
-        if (error.code !== 'ERR_CANCELED') {
-          toast.remove();
-          toast.error('Oops, something went wrong. Try reloading the page.');
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    getMovieCast();
+    getCastMovieById(movieId, setMovieCast, setIsLoading, controller);
 
     return () => {
       controller.abort();
@@ -50,19 +30,17 @@ const Cast = () => {
     <div>
       {movieCast.length ? (
         <List>
-          {movieCast.map(item => {
-            return (
-              <ListItem key={item.credit_id}>
-                <CastItem castItem={item} />
-              </ListItem>
-            );
-          })}
+          {movieCast.map(item => (
+            <ListItem key={item.credit_id}>
+              <CastItem castItem={item} />
+            </ListItem>
+          ))}
         </List>
       ) : (
-        <NoCastText>No information.</NoCastText>
+        <NoCastText>No cast information available.</NoCastText>
       )}
 
-      {isLoading && <Loader text="Loading data, please wait..." />}
+      <Loader isLoading={isLoading} />
     </div>
   );
 };

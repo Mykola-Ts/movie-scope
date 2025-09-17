@@ -8,7 +8,7 @@ export const MoviesList = ({ movies = [], state = '/' }) => {
       {movies.map(movie => (
         <ListItem key={movie.id}>
           <StyledLink to={`/movies/${movie.id}`} state={state}>
-            <MoviesListItem movies={movie} />
+            <MoviesListItem movie={movie} />
           </StyledLink>
         </ListItem>
       ))}

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   Links,
   LinksItem,
@@ -17,6 +18,7 @@ export const MovieDescrAdditional = ({ location }) => {
             Show the cast
           </StyledNavLink>
         </LinksItem>
+
         <LinksItem>
           <StyledNavLink to="reviews" state={{ from: location }}>
             Show reviews
@@ -25,4 +27,8 @@ export const MovieDescrAdditional = ({ location }) => {
       </Links>
     </Wrapper>
   );
+};
+
+MovieDescrAdditional.propTypes = {
+  location: PropTypes.object.isRequired,
 };

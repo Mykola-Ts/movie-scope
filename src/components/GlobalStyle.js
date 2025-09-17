@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
 import 'modern-normalize';
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 /* ---------------- FONTS ---------------- */
@@ -46,6 +46,8 @@ export const GlobalStyle = createGlobalStyle`
   font-display: swap;
 }
 
+/* ---------------- VARIABLES ---------------- */
+
 :root {
   --font-family: 'DM Sans', sans-serif;
 
@@ -65,21 +67,7 @@ export const GlobalStyle = createGlobalStyle`
   --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-body {
-  margin: 0;
-
-  font-family: var(--font-family);
-  font-size: 16px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 1.13;
-  letter-spacing: 0.32px;
-
-  color: var(--white-color);
-  background: var(--background-color);
-  background: -webkit-linear-gradient(to right, #414345, var(--background-color));
-  background: linear-gradient(to right, #414345, var(--background-color));
-}
+/* ---------------- RESET-STYLES ---------------- */
 
 h1,
 h2,
@@ -101,6 +89,7 @@ ul {
 
 img {
   display: block;
+  
   max-width: 100%;
   height: auto;
   object-fit: cover;
@@ -114,5 +103,24 @@ a {
 
 button {
   cursor: pointer;
+}
+
+
+/* ---------------- COMMON-STYLES ---------------- */
+
+body {
+  margin: 0;
+
+  font-family: var(--font-family);
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.13;
+  letter-spacing: 0.32px;
+
+  color: var(--white-color);
+  background: var(--background-color);
+  background: -webkit-linear-gradient(to right, #414345, var(--background-color));
+  background: linear-gradient(to right, #414345, var(--background-color));
 }
 `;

@@ -17,7 +17,9 @@ import {
   ListValues,
 } from './MovieDescr.styled';
 
-export const MovieDescr = ({ movieDetails = {} }) => {
+export const MovieDescr = ({ movieDetails }) => {
+  if (!movieDetails) return;
+
   const {
     title = '',
     overview = '',
@@ -68,13 +70,15 @@ export const MovieDescr = ({ movieDetails = {} }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Homepage <FiExternalLink />
+                Homepage Movie <FiExternalLink />
               </MovieLink>
             )}
           </ListItem>
+
           <ListItem>
             Original title: <DescrValue>{original_title}</DescrValue>
           </ListItem>
+
           {genres.length > 0 && (
             <ListItem>
               <p>Genres:</p>
@@ -85,24 +89,29 @@ export const MovieDescr = ({ movieDetails = {} }) => {
               </ListValues>
             </ListItem>
           )}
+
           {runtime > 0 && (
             <ListItem>
               Runtime: <DescrValue>{runtime} minutes</DescrValue>
             </ListItem>
           )}
+
           {adult && (
             <ListItem>
               Adult: <DescrValue>18+</DescrValue>
             </ListItem>
           )}
+
           <ListItem>
             Original language: <DescrValue>{original_language}</DescrValue>
           </ListItem>
+
           {releaseDate !== 'Invalid Date' && (
             <ListItem>
               Release date: <DescrValue>{releaseDate}</DescrValue>
             </ListItem>
           )}
+
           {production_countries.length > 0 && (
             <ListItem>
               <p>Production countries:</p>
@@ -113,6 +122,7 @@ export const MovieDescr = ({ movieDetails = {} }) => {
               </ListValues>
             </ListItem>
           )}
+
           {production_companies.length > 0 && (
             <ListItem>
               <p>Production companies:</p>
@@ -123,25 +133,31 @@ export const MovieDescr = ({ movieDetails = {} }) => {
               </ListValues>
             </ListItem>
           )}
+
           {budget > 0 && (
             <ListItem>
               Budget: <DescrValue>${budget}</DescrValue>
             </ListItem>
           )}
+
           {revenue > 0 && (
             <ListItem>
               Revenue: <DescrValue>${revenue}</DescrValue>
             </ListItem>
           )}
+
           <ListItem>
             Popularity: <DescrValue>{moviePopularity}</DescrValue>
           </ListItem>
+
           <ListItem>
             Vote average: <DescrValue>{voteAverage}</DescrValue>
           </ListItem>
+
           <ListItem>
             Vote count: <DescrValue>{vote_count}</DescrValue>
           </ListItem>
+
           <ListItem>
             <Rating
               readonly={true}

@@ -1,7 +1,8 @@
 import { Suspense, useEffect, useState } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import { fetchMovieDetails } from 'services/api';
+import { getDetailsMovieById } from 'services/movies';
+import { defaultErrorMessage } from 'helpers/helpers';
 import { MovieDescr } from 'components/MovieDescr/MovieDescr';
 import { MovieDescrAdditional } from 'components/MovieDescrAdditional/MovieDescrAdditional';
 import { ToBackLink } from 'components/ToBackLink/ToBackLink';
@@ -16,31 +17,14 @@ const MovieDetails = () => {
   useEffect(() => {
     if (!movieId) {
       toast.remove();
-      toast.error('Oops, something went wrong. Try reloading the page.');
+      toast.error(defaultErrorMessage);
 
       return;
     }
 
-    setIsLoading(true);
-
     const controller = new AbortController();
 
-    async function getMovieDetails() {
-      try {
-        const data = await fetchMovieDetails(movieId, '', controller);
-
-        setMovieDetails(data);
-      } catch (error) {
-        if (error.code !== 'ERR_CANCELED') {
-          toast.remove();
-          toast.error('Oops, something went wrong. Try reloading the page.');
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    getMovieDetails();
+    getDetailsMovieById(movieId, setMovieDetails, setIsLoading, controller);
 
     return () => {
       controller.abort();
@@ -56,15 +40,17 @@ const MovieDetails = () => {
         {movieDetails && (
           <>
             <MovieDescr movieDetails={movieDetails} />
-            <MovieDescrAdditional location={location.state?.from ?? '/'} />
+            <MovieDescrAdditional
+              location={location.state?.from ?? { pathname: '/' }}
+            />
           </>
         )}
 
-        <Suspense fallback={<Loader text="Loading data, please wait..." />}>
+        <Suspense fallback={<Loader isLoading={true} />}>
           <Outlet />
         </Suspense>
 
-        {isLoading && <Loader text="Loading data, please wait..." />}
+        <Loader isLoading={isLoading} />
       </div>
     </main>
   );

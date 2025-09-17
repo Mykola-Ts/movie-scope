@@ -43,8 +43,8 @@ export const LinksItem = styled.li`
 
 export const StyledNavLink = styled(NavLink)`
   min-width: 160px;
-  padding: 4px 8px;
   border: 2px solid var(--black-color);
+  padding: 4px 8px;
 
   color: var(--black-color);
   background-color: var(--gray-color);
