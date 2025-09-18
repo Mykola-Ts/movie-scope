@@ -111,6 +111,8 @@ button {
 body {
   margin: 0;
 
+  overflow-y: scroll;
+
   font-family: var(--font-family);
   font-style: normal;
   font-size: 16px;

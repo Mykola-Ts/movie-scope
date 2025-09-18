@@ -1,5 +1,11 @@
 import { toast } from 'react-hot-toast';
-import { fetchMovieByQuery, fetchDetailsMovieById, fetchMovies } from './api';
+import {
+  fetchMovieByQuery,
+  fetchDetailsMovieById,
+  fetchMovies,
+  fetchMovieGenreList,
+  fetchMoviesByGenre,
+} from './api';
 import { defaultErrorMessage } from 'helpers/helpers';
 
 const noMoviesMatchingErrorMessage =
@@ -40,12 +46,15 @@ export async function getMovieByQuery(
   setIsLoading,
   controller
 ) {
+  if (!query) return;
+
   setIsLoading(true);
 
   try {
     const data = await fetchMovieByQuery(query, controller);
 
     if (!data.results.length) {
+      setMovies([]);
       toast.remove();
       toast.error(noMoviesMatchingErrorMessage);
 
@@ -134,3 +143,36 @@ export async function getReviewsMovieById(
     setIsLoading(false);
   }
 }
+
+export async function getMovieGenreList(setGenres) {
+  try {
+    const data = await fetchMovieGenreList();
+
+    setGenres(data.genres);
+  } catch (error) {
+    toast.remove();
+    toast.error(defaultErrorMessage);
+  }
+}
+
+export const getMoviesByGenre = async (
+  genre,
+  setMovies,
+  setIsLoading,
+  controller
+) => {
+  setIsLoading(true);
+
+  try {
+    const data = await fetchMoviesByGenre(genre, controller);
+
+    setMovies(data.results);
+  } catch (error) {
+    if (error.code !== 'ERR_CANCELED') {
+      toast.remove();
+      toast.error(defaultErrorMessage);
+    }
+  } finally {
+    setIsLoading(false);
+  }
+};

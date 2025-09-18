@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { toastWarningOptions } from 'helpers/helpers';
 import {
@@ -10,7 +11,26 @@ import {
   CloseIcon,
 } from './MoviesSearchForm.styled';
 
-export const MoviesSearchForm = ({ onSearch }) => {
+export const MoviesSearchForm = ({
+  onSearch,
+  onReset,
+  paramsQuery,
+  clearInput,
+  setClearInput,
+}) => {
+  const [inputQuery, setInputQuery] = useState(paramsQuery ?? '');
+
+  useEffect(() => {
+    setInputQuery(paramsQuery ?? '');
+  }, [paramsQuery]);
+
+  useEffect(() => {
+    if (clearInput) {
+      setInputQuery('');
+      setClearInput(false);
+    }
+  }, [clearInput, setClearInput]);
+
   const onSearchMovie = evt => {
     evt.preventDefault();
 
@@ -25,23 +45,23 @@ export const MoviesSearchForm = ({ onSearch }) => {
 
     onSearch(searchQuery);
 
-    evt.target.reset();
-
     return () => {
       toast.remove();
     };
   };
 
-  const onReset = evt => {
-    evt.target.closest('form').reset();
-  };
-
   return (
     <SearchbarForm onSubmit={onSearchMovie}>
       <InputLabel>
-        <SearchInput type="text" name="query" placeholder="Movie title" />
+        <SearchInput
+          type="text"
+          name="query"
+          value={inputQuery}
+          placeholder="Movie title"
+          onInput={evt => setInputQuery(evt.target.value)}
+        />
         <SearchIcon />
-        <CloseIcon onClick={onReset} />
+        {inputQuery && <CloseIcon onClick={onReset} />}
       </InputLabel>
 
       <SubmitBtn type="submit">Search</SubmitBtn>
@@ -51,4 +71,8 @@ export const MoviesSearchForm = ({ onSearch }) => {
 
 MoviesSearchForm.propTypes = {
   onSearch: PropTypes.func.isRequired,
+  onReset: PropTypes.func.isRequired,
+  paramsQuery: PropTypes.string,
+  clearInput: PropTypes.bool.isRequired,
+  setClearInput: PropTypes.func.isRequired,
 };

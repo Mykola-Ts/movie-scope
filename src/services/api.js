@@ -36,3 +36,17 @@ export const fetchMovieByQuery = async (query, controller) => {
 
   return resp.data;
 };
+
+export const fetchMovieGenreList = async () => {
+  const resp = await axios('genre/movie/list');
+
+  return resp.data;
+};
+
+export const fetchMoviesByGenre = async (genre, controller) => {
+  const resp = await axios(`/discover/movie?with_genres=${genre}`, {
+    signal: controller.signal,
+  });
+
+  return resp.data;
+};
