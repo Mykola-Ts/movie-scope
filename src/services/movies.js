@@ -13,14 +13,19 @@ const noMoviesMatchingErrorMessage =
 
 export async function getTopMovies(
   timeWindow,
+  page = 1,
   setMovies,
+  setTotalPages,
   setIsLoading,
   controller
 ) {
   setIsLoading(true);
 
   try {
-    const data = await fetchMovies(`trending/movie/${timeWindow}`, controller);
+    const data = await fetchMovies(
+      `trending/movie/${timeWindow}?page=${page}`,
+      controller
+    );
 
     if (!data.results.length) {
       toast.remove();
@@ -29,7 +34,8 @@ export async function getTopMovies(
       return;
     }
 
-    setMovies(data.results);
+    setMovies(prev => (page !== 1 ? [...prev, ...data.results] : data.results));
+    setTotalPages(data.total_pages);
   } catch (error) {
     if (error.code !== 'ERR_CANCELED') {
       toast.remove();
