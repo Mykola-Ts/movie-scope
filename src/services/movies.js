@@ -35,7 +35,7 @@ export async function getTopMovies(
     }
 
     setMovies(prev => (page !== 1 ? [...prev, ...data.results] : data.results));
-    setTotalPages(data.total_pages);
+    setTotalPages(data.total_pages > 500 ? 500 : data.total_pages);
   } catch (error) {
     if (error.code !== 'ERR_CANCELED') {
       toast.remove();
@@ -48,7 +48,9 @@ export async function getTopMovies(
 
 export async function getMovieByQuery(
   query,
+  page = 1,
   setMovies,
+  setTotalPages,
   setIsLoading,
   controller
 ) {
@@ -57,7 +59,7 @@ export async function getMovieByQuery(
   setIsLoading(true);
 
   try {
-    const data = await fetchMovieByQuery(query, controller);
+    const data = await fetchMovieByQuery(query, page, controller);
 
     if (!data.results.length) {
       setMovies([]);
@@ -68,6 +70,7 @@ export async function getMovieByQuery(
     }
 
     setMovies(data.results);
+    setTotalPages(data.total_pages > 500 ? 500 : data.total_pages);
   } catch (error) {
     if (error.code !== 'ERR_CANCELED') {
       toast.remove();
@@ -163,16 +166,19 @@ export async function getMovieGenreList(setGenres) {
 
 export const getMoviesByGenre = async (
   genre,
+  page,
   setMovies,
+  setTotalPages,
   setIsLoading,
   controller
 ) => {
   setIsLoading(true);
 
   try {
-    const data = await fetchMoviesByGenre(genre, controller);
+    const data = await fetchMoviesByGenre(genre, page, controller);
 
     setMovies(data.results);
+    setTotalPages(data.total_pages > 500 ? 500 : data.total_pages);
   } catch (error) {
     if (error.code !== 'ERR_CANCELED') {
       toast.remove();

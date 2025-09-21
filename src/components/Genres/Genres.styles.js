@@ -9,7 +9,6 @@ export const List = styled.ul`
 
   max-width: 1000px;
   margin: 0 auto;
-  margin-bottom: 32px;
 `;
 
 export const StyledLink = styled(Link)`

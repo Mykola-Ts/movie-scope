@@ -10,17 +10,21 @@ import {
 import { MoviesSearchForm } from 'components/MoviesSearchForm/MoviesSearchForm';
 import { Genres } from 'components/Genres/Genres';
 import { MoviesList } from 'components/MoviesList/MoviesList';
+import { Pagination } from 'components/Pagination/Pagination';
 import { Loader } from 'components/Loader/Loader';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [randomID, setRandomID] = useState('');
   const [query, setQuery] = useState(searchParams.get('query') ?? '');
+  const [page, setPage] = useState(Number(searchParams.get('page') ?? 1));
+  const [totalPages, setTotalPages] = useState(1);
   const [genres, setGenres] = useState([]);
   const [movies, setMovies] = useState([]);
   const [clearInput, setClearInput] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
+  const movieListRef = useRef();
   const controllerRef = useRef();
   const controllerRefGenres = useRef();
   const genre = searchParams.get('genre') ?? '';
@@ -43,7 +47,9 @@ const Movies = () => {
 
     getMoviesByGenre(
       genre,
+      page,
       setMovies,
+      setTotalPages,
       setIsLoading,
       controllerRefGenres.current
     );
@@ -52,7 +58,7 @@ const Movies = () => {
       controllerRefGenres.current.abort();
       toast.remove();
     };
-  }, [genre]);
+  }, [genre, page, totalPages]);
 
   useEffect(() => {
     if (!query) {
@@ -65,16 +71,24 @@ const Movies = () => {
 
     controllerRef.current = new AbortController();
 
-    getMovieByQuery(query, setMovies, setIsLoading, controllerRef.current);
+    getMovieByQuery(
+      query,
+      page,
+      setMovies,
+      setTotalPages,
+      setIsLoading,
+      controllerRef.current
+    );
 
     return () => {
       controllerRef.current.abort();
       toast.remove();
     };
-  }, [query, randomID]);
+  }, [query, page, randomID]);
 
   const onSearch = query => {
     setQuery(query);
+    setPage(1);
     setRandomID(nanoid());
 
     searchParams.set('query', query);
@@ -87,6 +101,30 @@ const Movies = () => {
     setMovies([]);
   };
 
+  const onChangePage = (evt, selectedPage) => {
+    const target = evt.target;
+    const action = target.dataset.action;
+    let newPage = selectedPage || page;
+
+    if (action) {
+      if (action === 'next') {
+        if (page === totalPages) return;
+
+        newPage += 1;
+      } else {
+        if (page === 1) return;
+
+        newPage -= 1;
+      }
+    }
+
+    setPage(newPage);
+    searchParams.set('page', newPage);
+    setSearchParams(searchParams);
+
+    movieListRef?.current.scrollIntoView({ block: 'start' });
+  };
+
   return (
     <main>
       <MoviesSearchForm
@@ -97,10 +135,25 @@ const Movies = () => {
         setClearInput={setClearInput}
       />
 
-      <Genres genres={genres} currentGenre={genre} />
+      <Genres genres={genres} currentGenre={genre} setPage={setPage} />
 
       {movies.length > 0 && (
-        <MoviesList movies={movies} state={{ from: location }} />
+        <>
+          <MoviesList
+            movies={movies}
+            state={{ from: location }}
+            movieListRef={movieListRef}
+          />
+
+          {totalPages > 1 && (
+            <Pagination
+              totalPages={totalPages}
+              currentPage={page}
+              isLastPage={page === totalPages}
+              onChangePage={onChangePage}
+            />
+          )}
+        </>
       )}
 
       <Loader isLoading={isLoading} />

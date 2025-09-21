@@ -18,8 +18,7 @@ const Home = () => {
     searchParams.get('time_window') ?? trendingTimeWindow.day.value
   );
   const [page, setPage] = useState(Number(searchParams.get('page') || 1));
-  const [totalPages, setTotalPages] = useState(0);
-  const [isLastPage, setIsLastPage] = useState(false);
+  const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
   const controllerRef = useRef();
@@ -39,8 +38,6 @@ const Home = () => {
       setIsLoading,
       controllerRef.current
     );
-
-    setIsLastPage(page === totalPages);
 
     return () => {
       controllerRef.current.abort();
@@ -74,7 +71,7 @@ const Home = () => {
           <MoviesList movies={movies} state={{ from: location }} />
 
           <ShowMoreBtn
-            isLastPage={isLastPage}
+            isLastPage={page === totalPages}
             isLoading={isLoading}
             onClick={onClickShowMoreBtn}
           />

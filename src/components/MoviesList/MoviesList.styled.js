@@ -7,6 +7,7 @@ export const List = styled.ul`
   gap: 40px 24px;
 
   width: 100%;
+  padding: 40px 0;
 `;
 
 export const ListItem = styled.li`
