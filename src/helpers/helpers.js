@@ -43,3 +43,10 @@ export const toastWarningOptions = {
 export const toastContainerStyle = {
   top: 160,
 };
+
+export const stripHTML = content => {
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = content;
+
+  return tempDiv.textContent || tempDiv.innerText || '';
+};

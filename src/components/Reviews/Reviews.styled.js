@@ -17,6 +17,10 @@ export const ListItem = styled.li`
   &:not(:last-child) {
     margin-bottom: 16px;
   }
+
+  @media screen and (min-width: 768px) {
+    padding: 20px;
+  }
 `;
 
 export const NoReviewText = styled.p`
