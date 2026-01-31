@@ -4,7 +4,7 @@ export const defaultErrorMessage =
   'Oops, something went wrong. Try reloading the page.';
 
 export const configurationImages = {
-  baseUrl: 'http://image.tmdb.org/t/p/',
+  baseUrl: 'https://image.tmdb.org/t/p/',
   posterSize: 342,
   profileSize: 185,
 };
