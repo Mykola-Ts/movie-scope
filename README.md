@@ -37,6 +37,11 @@ and user-friendly experience across different devices and screen sizes.
 
 ## 🏗 Web App Structure
 
+The application consists of two main pages:
+
+- **Home page** — displays a list of trending movies;
+- **Movies page** — allows users to search movies by title or genre.
+
 ## 🔗 Useful Links
 
 - [Live Demo](https://mykola-ts.github.io/movie-scope) — deployed version of the
@@ -58,18 +63,24 @@ and user-friendly experience across different devices and screen sizes.
 
 ## 📦 Libraries Used
 
-- [react-router-dom](https://reactrouter.com/) — routing for React applications;
 - [axios](https://axios-http.com/) — promise-based HTTP client;
+- [modern-normalize](https://github.com/sindresorhus/modern-normalize) —
+- [nanoid](https://www.npmjs.com/package/nanoid) — unique ID generator;
+- [react](https://react.dev/) — core library for building user interfaces;
+- [react-dom](https://www.npmjs.com/package/react-dom) — DOM-specific methods
+  for rendering React components;
 - [react-hot-toast](https://react-hot-toast.com/) — beautiful notifications &
   toasts;
 - [react-icons](https://react-icons.github.io/react-icons/) — popular icon packs
   for React;
 - [react-loader-spinner](https://www.npmjs.com/package/react-loader-spinner) —
-  loading spinners for React;
-- [modern-normalize](https://github.com/sindresorhus/modern-normalize) —
-  normalize default browser styles;
+  loading spinners for React; normalize default browser styles;
+- [react-rating](https://www.npmjs.com/package/react-rating) — customizable
+  rating (stars) component for React; library.
+- [react-router-dom](https://reactrouter.com/) — routing for React applications;
+- [react-scroll-to-top](https://www.npmjs.com/package/react-scroll-to-top?activeTab=versions)
+  — scroll-to-top button component for React applications.
 - [styled-components](https://styled-components.com/) — CSS-in-JS styling
-  library.
 
 ## 📁 Folder and File Structure
 
@@ -124,6 +135,49 @@ and user-friendly experience across different devices and screen sizes.
 
 ## 🎯 Features
 
+- **Trending Movies**  
+  The homepage displays a curated list of popular movies with the ability to
+  switch between daily trending (default) and weekly trending titles.
+
+- **Load More Movies**  
+  A Show more button at the bottom of the homepage allows users to load and view
+  additional movies without leaving the page.
+
+- **Movie Search**  
+  Users can search for movies by title on the /movies page, enabling quick and
+  easy content discovery.
+
+- **Genre Filter**  
+  The /movies page includes a list of main genres, allowing users to quickly
+  find movies by their preferred genre.
+
+- **Pagination**  
+  The /movies page includes pagination to browse through large result sets, with
+  visibility of the total number of available pages.
+
+- **Movie Details**  
+  Each movie has a dedicated details page that provides comprehensive
+  information, including:
+  - poster image and homepage link;
+  - original title and original language;
+  - genres and runtime;
+  - release date;
+  - production countries and companies;
+  - budget and revenue;
+  - popularity score, average rating, and vote count;
+  - movie overview and plot description.
+
+- **Additional Information about movie**  
+  The movie details page includes an Additional information section with
+  interactive buttons:
+  - Show the cast — displays the list of actors and their roles;
+  - Show reviews — shows user reviews and feedback.
+
+- **Scroll to Top Button**  
+  Enhances navigation and usability, especially on long or content-heavy pages.
+  Appears when scrolling down and allows users to quickly return to the top of
+  the page.
+
 - **Keyboard Accessibility**  
   Modal windows and navigation elements support keyboard interactions (e.g., Esc
   to close modals), improving accessibility.
@@ -137,6 +191,22 @@ and user-friendly experience across different devices and screen sizes.
   interactions, and an inclusive, user-friendly experience across all devices.
 
 ## 🚀 PageSpeed Results
+
+Google's PageSpeed Insights was used to analyze the performance of the main page
+of the MovieScope web app on both mobile and desktop devices. The results
+indicate strong performance in key areas, providing a smooth user experience for
+public users.
+
+- **📱 Mobile Performance:**
+
+![Mobile Home Page Performance](./assets/page-speed-mobile.jpg)
+
+- **💻 Desktop Performance:**
+
+![Desktop Home Page Performance](./assets/page-speed-desktop.jpg)
+
+These results reflect that the publicly available part of the web app is
+optimized for fast loading times and high usability across devices.
 
 ## ⚙ Installation & Setup
 
