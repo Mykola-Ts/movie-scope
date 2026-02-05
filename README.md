@@ -37,10 +37,48 @@ and user-friendly experience across different devices and screen sizes.
 
 ## 🏗 Web App Structure
 
-The application consists of two main pages:
+The Movie Scope web application consists of two main pages and reusable UI
+components that together provide full movie browsing and search functionality.
 
-- **Home page** — displays a list of trending movies;
-- **Movies page** — allows users to search movies by title or genre.
+**📃 Main Pages:**
+
+- **Home Page** — displays a curated list of trending and popular movies. Users
+  can browse movies based on the selected trending time window (e.g. Trending
+  Today, Trending This Week). Each movie card shows basic information such as
+  poster, title, rating, and release year.
+
+- **Movies Page** — provides movie search and discovery functionality. Users can
+  search for movies by title or quickly filter results using a list of
+  predefined genres. The page displays search results in a paginated movie list.
+
+**🧩 Core Elements:**
+
+- **Header** — contains the application name and logo (MovieScope) and
+  navigation links (Home, Movies). It is shared across all pages.
+
+- **Trending Time Window Switcher** — located on the Home page, allows users to
+  switch between different trending periods to update the displayed movie list.
+
+- **Movies List** — displays a grid of movie cards based on trending data or
+  search results. Each item shows the movie poster, title, rating, and release
+  year.
+
+- **Movie Search Form** — located on the Movies page, allows users to search for
+  movies by name.
+
+- **Genre Filter** — a horizontal list of main movie genres on the Movies page
+  that enables quick filtering by a selected genre.
+
+- **Pagination** — allows users to navigate through multiple pages of movie
+  results on the Movies page.
+
+- **Movie Details Components** — include sections for movie description,
+  additional information, cast, and reviews, providing extended details for a
+  selected movie.
+
+- **Reusable UI Components** — shared components such as loaders, buttons (Back
+  to Top, Back Link), and layout wrappers are used to maintain consistent UI and
+  improve user experience.
 
 ## 🔗 Useful Links
 
