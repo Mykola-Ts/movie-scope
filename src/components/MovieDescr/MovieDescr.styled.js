@@ -38,7 +38,7 @@ export const Poster = styled.img`
   }
 `;
 
-export const Title = styled.h3`
+export const Title = styled.h1`
   margin-bottom: 16px;
 
   font-size: 24px;
@@ -89,7 +89,7 @@ export const MovieLink = styled.a`
   }
 `;
 
-export const DescrValue = styled.span`
+export const DescrValue = styled.p`
   font-weight: 400;
 `;
 

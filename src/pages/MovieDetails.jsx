@@ -35,7 +35,7 @@ const MovieDetails = () => {
   return (
     <main>
       <div>
-        <ToBackLink />
+        <ToBackLink text="Back to movies" />
 
         {movieDetails && (
           <>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { getCastMovieById } from 'services/movies';
 import { CastItem } from 'components/CastItem/CastItem';
@@ -10,6 +10,7 @@ const Cast = () => {
   const [movieCast, setMovieCast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
     if (!movieId) {
@@ -32,7 +33,7 @@ const Cast = () => {
         <List>
           {movieCast.map(item => (
             <ListItem key={item.credit_id}>
-              <CastItem castItem={item} />
+              <CastItem castItem={item} state={{ from: location }} />
             </ListItem>
           ))}
         </List>

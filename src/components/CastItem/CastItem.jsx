@@ -8,8 +8,9 @@ import {
   Name,
   Photo,
 } from './CastItem.styled';
+import { Link } from 'react-router-dom';
 
-export const CastItem = ({ castItem }) => {
+export const CastItem = ({ castItem, state }) => {
   if (!castItem) return;
 
   const {
@@ -17,6 +18,7 @@ export const CastItem = ({ castItem }) => {
     character = '',
     popularity = 0,
     profile_path = '',
+    id = '',
   } = castItem;
   const { baseUrl, profileSize } = configurationImages;
   const posterSrc = profile_path
@@ -34,7 +36,15 @@ export const CastItem = ({ castItem }) => {
       />
 
       <Descr>
-        <Name>{name}</Name>
+        <Link
+          to={`/person/${id}`}
+          state={state}
+          style={{
+            color: 'inherit',
+          }}
+        >
+          <Name>{name}</Name>
+        </Link>
 
         <DescrItem>
           Character: <DescrItemValue>{character}</DescrItemValue>
@@ -50,4 +60,5 @@ export const CastItem = ({ castItem }) => {
 
 CastItem.propTypes = {
   castItem: PropTypes.object.isRequired,
+  state: PropTypes.object,
 };

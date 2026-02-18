@@ -53,3 +53,19 @@ export const fetchMoviesByGenre = async (genre, page, controller) => {
 
   return resp.data;
 };
+
+export const fetchPersonById = async (id, controller) => {
+  const resp = await axios(`/person/${id}`, {
+    signal: controller.signal,
+  });
+
+  return resp.data;
+};
+
+export const fetchPersonPhotos = async (id, controller) => {
+  const resp = await axios(`/person/${id}/images`, {
+    signal: controller.signal,
+  });
+
+  return resp.data;
+};
