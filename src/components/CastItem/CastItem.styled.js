@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Photo = styled.img`
   width: 184px;
@@ -22,6 +23,23 @@ export const Descr = styled.div`
 
   @media screen and (max-width: 767px) {
     text-align: center;
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  color: inherit;
+
+  &:is(:hover, :focus) {
+    text-decoration: underline;
+  }
+
+  &.photo img {
+    transition: transform var(--transition-duration)
+      var(--transition-timing-function);
+
+    &:is(:hover, :focus) {
+      transform: scale(1.05);
+    }
   }
 `;
 

@@ -1,5 +1,12 @@
 import { IoWarningOutline } from 'react-icons/io5';
 
+export const GENDERS = [
+  'Not set / not specified',
+  'Female',
+  'Male',
+  'Non-binary',
+];
+
 export const defaultErrorMessage =
   'Oops, something went wrong. Try reloading the page.';
 
@@ -50,3 +57,17 @@ export const stripHTML = content => {
 
   return tempDiv.textContent || tempDiv.innerText || '';
 };
+
+export function formatDate(dateString) {
+  const [year, month, day] = dateString.split('-').map(item => Number(item));
+
+  const date = new Date(year, month - 1, day);
+
+  const formatted = new Intl.DateTimeFormat('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  }).format(date);
+
+  return formatted;
+}

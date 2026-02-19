@@ -7,8 +7,8 @@ import {
   DescrItemValue,
   Name,
   Photo,
+  StyledLink,
 } from './CastItem.styled';
-import { Link } from 'react-router-dom';
 
 export const CastItem = ({ castItem, state }) => {
   if (!castItem) return;
@@ -28,23 +28,19 @@ export const CastItem = ({ castItem, state }) => {
 
   return (
     <>
-      <Photo
-        src={posterSrc}
-        alt={name}
-        width={profileSize}
-        height={profileSize * 1.5}
-      />
+      <StyledLink to={`/person/${id}`} state={state} className="photo">
+        <Photo
+          src={posterSrc}
+          alt={name}
+          width={profileSize}
+          height={profileSize * 1.5}
+        />
+      </StyledLink>
 
       <Descr>
-        <Link
-          to={`/person/${id}`}
-          state={state}
-          style={{
-            color: 'inherit',
-          }}
-        >
+        <StyledLink to={`/person/${id}`} state={state}>
           <Name>{name}</Name>
-        </Link>
+        </StyledLink>
 
         <DescrItem>
           Character: <DescrItemValue>{character}</DescrItemValue>
