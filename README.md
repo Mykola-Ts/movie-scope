@@ -21,7 +21,7 @@ information about them, such as posters, titles, genres, ratings, and more.
 
 ## 📝 About the Project
 
-This project is a responsive two-page web application developed as a movie
+This project is a responsive multi-page web application developed as a movie
 discovery platform. It allows users to browse popular movies, search for
 specific titles, and explore detailed information about each film in a clean and
 intuitive interface. The application provides a convenient way to discover new
@@ -37,7 +37,7 @@ and user-friendly experience across different devices and screen sizes.
 
 ## 🏗 Web App Structure
 
-The Movie Scope web application consists of two main pages and reusable UI
+The Movie Scope web application consists of four main pages and reusable UI
 components that together provide full movie browsing and search functionality.
 
 **📃 Main Pages:**
@@ -50,6 +50,16 @@ components that together provide full movie browsing and search functionality.
 - **Movies Page** — provides movie search and discovery functionality. Users can
   search for movies by title or quickly filter results using a list of
   predefined genres. The page displays search results in a paginated movie list.
+
+- **Movie Details Page** — displays comprehensive information about a selected
+  movie, including its overview, key metadata (such as release date, rating, and
+  genres), and related content. The page serves as a focused view for exploring
+  a specific title in detail.
+
+- **Person Details Page** — provides detailed information about a selected film
+  industry professional, including personal data (gender, date of birth, place
+  of birth), department, popularity score, and a biography. The page also
+  includes photos, allowing users to explore the person’s career.
 
 **🧩 Core Elements:**
 
@@ -210,6 +220,19 @@ components that together provide full movie browsing and search functionality.
   interactive buttons:
   - Show the cast — displays the list of actors and their roles;
   - Show reviews — shows user reviews and feedback.
+
+- **Person Details**  
+   Each person has a dedicated details page that provides comprehensive
+  information, including:
+  - profile photo and basic personal information;
+  - full name, gender, and date of birth;
+  - place of birth and known-for department (e.g., Acting, Directing);
+  - popularity score and professional relevance;
+  - biography and career overview;
+  - additional photos related to the person.
+
+  This information allows users to explore the individual’s background and
+  professional contributions in detail.
 
 - **Scroll to Top Button**  
   Enhances navigation and usability, especially on long or content-heavy pages.
