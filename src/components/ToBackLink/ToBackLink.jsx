@@ -5,10 +5,13 @@ import { StyledLink } from './ToBackLink.styled';
 
 export const ToBackLink = ({ text }) => {
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+  const backLinkHref = location.state?.from ?? location.state?.parent ?? '/';
 
   return (
-    <StyledLink to={backLinkHref}>
+    <StyledLink
+      to={backLinkHref}
+      state={{ from: location.state?.parent ?? '/' }}
+    >
       <BiArrowBack size={20} /> {text}
     </StyledLink>
   );

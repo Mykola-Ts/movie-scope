@@ -33,7 +33,10 @@ const Cast = () => {
         <List>
           {movieCast.map(item => (
             <ListItem key={item.credit_id}>
-              <CastItem castItem={item} state={{ from: location }} />
+              <CastItem
+                castItem={item}
+                state={{ from: location.state?.from ?? location }}
+              />
             </ListItem>
           ))}
         </List>

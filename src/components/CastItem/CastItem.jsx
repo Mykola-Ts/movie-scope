@@ -9,8 +9,11 @@ import {
   Photo,
   StyledLink,
 } from './CastItem.styled';
+import { useLocation } from 'react-router-dom';
 
 export const CastItem = ({ castItem, state }) => {
+  const location = useLocation();
+
   if (!castItem) return;
 
   const {
@@ -28,7 +31,17 @@ export const CastItem = ({ castItem, state }) => {
 
   return (
     <>
-      <StyledLink to={`/person/${id}`} state={state} className="photo">
+      <StyledLink
+        to={`/person/${id}`}
+        state={{
+          from: {
+            pathname: location?.pathname || '/',
+            search: location?.search || '',
+          },
+          parent: location?.state?.from ?? location,
+        }}
+        className="photo"
+      >
         <Photo
           src={posterSrc}
           alt={name}
@@ -38,7 +51,16 @@ export const CastItem = ({ castItem, state }) => {
       </StyledLink>
 
       <Descr>
-        <StyledLink to={`/person/${id}`} state={state}>
+        <StyledLink
+          to={`/person/${id}`}
+          state={{
+            from: {
+              pathname: location?.pathname || '/',
+              search: location?.search || '',
+            },
+            parent: location?.state?.from ?? location,
+          }}
+        >
           <Name>{name}</Name>
         </StyledLink>
 
