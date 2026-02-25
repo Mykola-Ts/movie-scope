@@ -6,6 +6,7 @@ import { defaultErrorMessage } from 'helpers/helpers';
 import { MovieDescr } from 'components/MovieDescr/MovieDescr';
 import { MovieDescrAdditional } from 'components/MovieDescrAdditional/MovieDescrAdditional';
 import { ToBackLink } from 'components/ToBackLink/ToBackLink';
+import { MovieImages } from 'components/MovieImages/MovieImages';
 import { Loader } from 'components/Loader/Loader';
 
 const MovieDetails = () => {
@@ -40,6 +41,9 @@ const MovieDetails = () => {
         {movieDetails && (
           <>
             <MovieDescr movieDetails={movieDetails} />
+
+            <MovieImages movieId={movieId} movieName={movieDetails.title} />
+
             <MovieDescrAdditional
               location={location.state?.from ?? { pathname: '/' }}
             />

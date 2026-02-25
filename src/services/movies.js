@@ -5,6 +5,7 @@ import {
   fetchMovies,
   fetchMovieGenreList,
   fetchMoviesByGenre,
+  fetchMovieImagesById,
 } from './api';
 import { defaultErrorMessage } from 'helpers/helpers';
 
@@ -188,3 +189,16 @@ export const getMoviesByGenre = async (
     setIsLoading(false);
   }
 };
+
+export async function getMovieImages(movieId, setImages, controller) {
+  try {
+    const data = await fetchMovieImagesById(movieId, controller);
+
+    setImages([...data.backdrops]);
+  } catch (error) {
+    if (error.code !== 'ERR_CANCELED') {
+      toast.remove();
+      toast.error(defaultErrorMessage);
+    }
+  }
+}

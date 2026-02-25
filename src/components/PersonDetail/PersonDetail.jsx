@@ -38,9 +38,9 @@ export const PersonDetail = ({ person }) => {
     popularity = '0',
     known_for_department,
   } = person;
-  const { baseUrl, profileSize } = configurationImages;
+  const { baseUrl, posterBigSize } = configurationImages;
   const posterSrc = profile_path
-    ? `${baseUrl}/w${profileSize}/${profile_path}`
+    ? `${baseUrl}/w${posterBigSize}/${profile_path}`
     : photoPlaceholder;
   const birthdayDate = birthday ? formatDate(birthday) : '';
   const fixedPopularity = Number(popularity).toFixed(1);
@@ -71,8 +71,8 @@ export const PersonDetail = ({ person }) => {
         <Photo
           src={posterSrc}
           alt={name}
-          width={profileSize}
-          height={profileSize * 1.5}
+          width={posterBigSize}
+          height={posterBigSize * 1.5}
         />
 
         <DetailsList>
@@ -124,7 +124,7 @@ export const PersonDetail = ({ person }) => {
             {photos.map(({ file_path }) => (
               <PhotosListItem key={file_path}>
                 <Photo
-                  src={`${baseUrl}/w${profileSize}/${file_path}`}
+                  src={`${baseUrl}/w${posterBigSize}/${file_path}`}
                   alt={name}
                   loading="lazy"
                   className="gallery"

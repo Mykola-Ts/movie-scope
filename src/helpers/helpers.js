@@ -13,7 +13,9 @@ export const defaultErrorMessage =
 export const configurationImages = {
   baseUrl: 'https://image.tmdb.org/t/p/',
   posterSize: 342,
+  posterBigSize: 500,
   profileSize: 185,
+  backdropSize: 780,
 };
 
 export const toastOptions = {
