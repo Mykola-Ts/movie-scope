@@ -1,9 +1,3 @@
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import 'swiper/css/keyboard';
-import 'swiper/css/mousewheel';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -11,7 +5,6 @@ import {
   Navigation,
   Pagination,
   Scrollbar,
-  A11y,
   Keyboard,
   Mousewheel,
 } from 'swiper/modules';
@@ -23,6 +16,12 @@ import {
   PhotosListItem,
   SwiperWrap,
 } from './MovieImages.styled';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import 'swiper/css/keyboard';
+import 'swiper/css/mousewheel';
 
 export const MovieImages = ({ movieId, movieName }) => {
   const [images, setImages] = useState([]);
@@ -46,16 +45,16 @@ export const MovieImages = ({ movieId, movieName }) => {
           Navigation,
           Pagination,
           Scrollbar,
-          A11y,
           Keyboard,
           Keyboard,
           Mousewheel,
         ]}
-        keyboard
-        slidesPerView={2}
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
+        navigation={true}
+        slidesPerView={2}
         spaceBetween={20}
+        keyboard
         mousewheel
       >
         <PhotosList>
