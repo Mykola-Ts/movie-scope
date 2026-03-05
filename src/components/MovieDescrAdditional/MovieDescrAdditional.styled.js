@@ -21,12 +21,6 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Title = styled.p`
-  margin-bottom: 16px;
-
-  font-weight: 700;
-`;
-
 export const Links = styled.ul`
   display: flex;
 `;
@@ -50,7 +44,8 @@ export const StyledNavLink = styled(NavLink)`
   background-color: var(--gray-color);
   outline: 2px solid transparent;
 
-  transition: background-color var(--transition-duration)
+  transition:
+    background-color var(--transition-duration)
       var(--transition-timing-function),
     border-color var(--transition-duration) var(--transition-timing-function),
     outline var(--transition-duration) var(--transition-timing-function);

@@ -15,6 +15,7 @@ import {
   MovieLink,
   Overview,
   ListValues,
+  MovieDescrSubTitle,
 } from './MovieDescr.styled';
 
 export const MovieDescr = ({ movieDetails }) => {
@@ -174,7 +175,7 @@ export const MovieDescr = ({ movieDetails }) => {
 
       {overview && (
         <Overview>
-          <p>Overview</p>
+          <MovieDescrSubTitle>Overview</MovieDescrSubTitle>
           <DescrValue>{overview}</DescrValue>
         </Overview>
       )}

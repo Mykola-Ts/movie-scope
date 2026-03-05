@@ -3,14 +3,14 @@ import {
   Links,
   LinksItem,
   StyledNavLink,
-  Title,
   Wrapper,
 } from './MovieDescrAdditional.styled';
+import { MovieDescrSubTitle } from 'components/MovieDescr/MovieDescr.styled';
 
 export const MovieDescrAdditional = ({ location }) => {
   return (
     <Wrapper>
-      <Title>Additional information</Title>
+      <MovieDescrSubTitle>Additional information</MovieDescrSubTitle>
 
       <Links>
         <LinksItem>

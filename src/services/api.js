@@ -37,6 +37,14 @@ export const fetchMovieImagesById = async (movieId, controller) => {
   return resp.data;
 };
 
+export const fetchMovieVideosById = async (movieId, controller) => {
+  const resp = await axios(`/movie/${movieId}/videos`, {
+    signal: controller.signal,
+  });
+
+  return resp.data;
+};
+
 export const fetchMovieByQuery = async (query, page, controller) => {
   const resp = await axios(`/search/movie?query=${query}&page=${page}`, {
     signal: controller.signal,

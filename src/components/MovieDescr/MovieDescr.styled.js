@@ -29,6 +29,27 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const MovieDescrSubTitle = styled.p`
+  margin-bottom: 8px;
+
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.33;
+  letter-spacing: 0.36px;
+
+  color: var(--text-gray-color);
+
+  @media screen and (min-width: 1440px) {
+    font-size: 22px;
+    line-height: normal;
+    letter-spacing: 0.44px;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 24px;
+  }
+`;
+
 export const Poster = styled.img`
   max-width: 342px;
   border-radius: 8px;
@@ -107,12 +128,6 @@ export const ListValues = styled.ul`
 
 export const Overview = styled.div`
   margin-bottom: 16px;
-
-  font-weight: 700;
-
-  & p:first-child {
-    margin-bottom: 8px;
-  }
 
   @media screen and (min-width: 768px) {
     margin-bottom: 24px;

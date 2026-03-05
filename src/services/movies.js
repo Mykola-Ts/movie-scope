@@ -6,6 +6,7 @@ import {
   fetchMovieGenreList,
   fetchMoviesByGenre,
   fetchMovieImagesById,
+  fetchMovieVideosById,
 } from './api';
 import { defaultErrorMessage } from 'helpers/helpers';
 
@@ -195,6 +196,19 @@ export async function getMovieImages(movieId, setImages, controller) {
     const data = await fetchMovieImagesById(movieId, controller);
 
     setImages([...data.backdrops]);
+  } catch (error) {
+    if (error.code !== 'ERR_CANCELED') {
+      toast.remove();
+      toast.error(defaultErrorMessage);
+    }
+  }
+}
+
+export async function getMovieVideos(movieId, setVideos, controller) {
+  try {
+    const data = await fetchMovieVideosById(movieId, controller);
+
+    setVideos([...data.results]);
   } catch (error) {
     if (error.code !== 'ERR_CANCELED') {
       toast.remove();

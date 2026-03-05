@@ -7,6 +7,7 @@ import { MovieDescr } from 'components/MovieDescr/MovieDescr';
 import { MovieDescrAdditional } from 'components/MovieDescrAdditional/MovieDescrAdditional';
 import { ToBackLink } from 'components/ToBackLink/ToBackLink';
 import { MovieImages } from 'components/MovieImages/MovieImages';
+import { MovieVideos } from 'components/MovieVideos/MovieVideos';
 import { Loader } from 'components/Loader/Loader';
 
 const MovieDetails = () => {
@@ -43,6 +44,8 @@ const MovieDetails = () => {
             <MovieDescr movieDetails={movieDetails} />
 
             <MovieImages movieId={movieId} movieName={movieDetails.title} />
+
+            <MovieVideos movieId={movieId} />
 
             <MovieDescrAdditional
               location={location.state?.from ?? { pathname: '/' }}
