@@ -22,24 +22,26 @@ export const MovieVideos = ({ movieId }) => {
   );
 
   return (
-    <Wrapper>
-      <MovieDescrSubTitle>Trailers</MovieDescrSubTitle>
+    videos.length > 0 && (
+      <Wrapper>
+        <MovieDescrSubTitle>Trailers</MovieDescrSubTitle>
 
-      <ul>
-        {trailers.map(({ key }) => (
-          <VideoListItem key={key}>
-            <VideoIframe
-              src={`https://www.youtube.com/embed/${key}`}
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-              loading="lazy"
-            ></VideoIframe>
-          </VideoListItem>
-        ))}
-      </ul>
-    </Wrapper>
+        <ul>
+          {trailers.map(({ key }) => (
+            <VideoListItem key={key}>
+              <VideoIframe
+                src={`https://www.youtube.com/embed/${key}`}
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                loading="lazy"
+              ></VideoIframe>
+            </VideoListItem>
+          ))}
+        </ul>
+      </Wrapper>
+    )
   );
 };
 

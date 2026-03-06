@@ -1,27 +1,16 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  Keyboard,
-  Mousewheel,
-} from 'swiper/modules';
+import { SwiperSlide } from 'swiper/react';
 import { getMovieImages } from 'services/movies';
 import { configurationImages } from 'helpers/helpers';
+import { BaseSwiper } from 'components/BaseSwiper/BaseSwiper';
 import {
   Photo,
   PhotosList,
   PhotosListItem,
   SwiperWrap,
 } from './MovieImages.styled';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import 'swiper/css/keyboard';
-import 'swiper/css/mousewheel';
+import { MovieDescrSubTitle } from 'components/MovieDescr/MovieDescr.styled';
 
 export const MovieImages = ({ movieId, movieName }) => {
   const [images, setImages] = useState([]);
@@ -40,23 +29,9 @@ export const MovieImages = ({ movieId, movieName }) => {
 
   return (
     <SwiperWrap>
-      <Swiper
-        modules={[
-          Navigation,
-          Pagination,
-          Scrollbar,
-          Keyboard,
-          Keyboard,
-          Mousewheel,
-        ]}
-        pagination={{ clickable: true }}
-        scrollbar={{ draggable: true }}
-        navigation={true}
-        slidesPerView={2}
-        spaceBetween={20}
-        keyboard
-        mousewheel
-      >
+      <MovieDescrSubTitle>Images</MovieDescrSubTitle>
+
+      <BaseSwiper>
         <PhotosList>
           {images.map(({ file_path }) => (
             <PhotosListItem key={file_path}>
@@ -70,7 +45,7 @@ export const MovieImages = ({ movieId, movieName }) => {
             </PhotosListItem>
           ))}
         </PhotosList>
-      </Swiper>
+      </BaseSwiper>
     </SwiperWrap>
   );
 };
