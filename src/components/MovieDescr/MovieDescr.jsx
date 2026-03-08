@@ -13,9 +13,7 @@ import {
   Title,
   List,
   MovieLink,
-  Overview,
   ListValues,
-  MovieDescrSubTitle,
 } from './MovieDescr.styled';
 
 export const MovieDescr = ({ movieDetails }) => {
@@ -113,28 +111,6 @@ export const MovieDescr = ({ movieDetails }) => {
             </ListItem>
           )}
 
-          {production_countries.length > 0 && (
-            <ListItem>
-              <p>Production countries:</p>
-              <ListValues>
-                {production_countries.map(({ iso_3166_1, name }) => (
-                  <li key={iso_3166_1}>{name}</li>
-                ))}
-              </ListValues>
-            </ListItem>
-          )}
-
-          {production_companies.length > 0 && (
-            <ListItem>
-              <p>Production companies:</p>
-              <ListValues>
-                {production_companies.map(({ id, name }) => (
-                  <li key={id}>{name}</li>
-                ))}
-              </ListValues>
-            </ListItem>
-          )}
-
           {budget > 0 && (
             <ListItem>
               Budget: <DescrValue>${budget}</DescrValue>
@@ -150,35 +126,58 @@ export const MovieDescr = ({ movieDetails }) => {
           <ListItem>
             Popularity: <DescrValue>{moviePopularity}</DescrValue>
           </ListItem>
-
-          <ListItem>
-            Vote average: <DescrValue>{voteAverage}</DescrValue>
-          </ListItem>
-
-          <ListItem>
-            Vote count: <DescrValue>{vote_count}</DescrValue>
-          </ListItem>
-
-          <ListItem>
-            <Rating
-              readonly={true}
-              stop={10}
-              initialRating={vote_average}
-              emptySymbol={
-                <AiOutlineStar color="var(--gold-color)" size={32} />
-              }
-              fullSymbol={<AiTwotoneStar color="var(--gold-color)" size={32} />}
-            />
-          </ListItem>
         </List>
       </Wrapper>
 
-      {overview && (
-        <Overview>
-          <MovieDescrSubTitle>Overview</MovieDescrSubTitle>
-          <DescrValue>{overview}</DescrValue>
-        </Overview>
-      )}
+      <List className="wide-list">
+        {overview && (
+          <ListItem>
+            <p>Overview</p>
+            <DescrValue>{overview}</DescrValue>
+          </ListItem>
+        )}
+
+        {production_countries.length > 0 && (
+          <ListItem>
+            <p>Production countries:</p>
+            <ListValues>
+              {production_countries.map(({ iso_3166_1, name }) => (
+                <li key={iso_3166_1}>{name}</li>
+              ))}
+            </ListValues>
+          </ListItem>
+        )}
+
+        {production_companies.length > 0 && (
+          <ListItem>
+            <p>Production companies:</p>
+            <ListValues>
+              {production_companies.map(({ id, name }) => (
+                <li key={id}>{name}</li>
+              ))}
+            </ListValues>
+          </ListItem>
+        )}
+
+        <ListItem>
+          Vote average: <DescrValue>{voteAverage}</DescrValue>
+        </ListItem>
+
+        <ListItem>
+          <p>Rating</p>
+          <Rating
+            readonly={true}
+            stop={10}
+            initialRating={vote_average}
+            emptySymbol={<AiOutlineStar color="var(--gold-color)" size={32} />}
+            fullSymbol={<AiTwotoneStar color="var(--gold-color)" size={32} />}
+          />
+        </ListItem>
+
+        <ListItem>
+          Vote count: <DescrValue>{vote_count}</DescrValue>
+        </ListItem>
+      </List>
     </Details>
   );
 };

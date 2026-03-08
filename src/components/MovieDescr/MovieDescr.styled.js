@@ -19,6 +19,7 @@ export const Wrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     display: flex;
+    align-items: flex-start;
     gap: 32px;
 
     margin-bottom: 24px;
@@ -81,6 +82,14 @@ export const List = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  &.wide-list {
+    margin-bottom: 16px;
+
+    @media screen and (min-width: 768px) {
+      margin-bottom: 24px;
+    }
+  }
 `;
 
 export const ListItem = styled.li`
@@ -123,13 +132,5 @@ export const ListValues = styled.ul`
 
   & li:not(:last-child)::after {
     content: ',';
-  }
-`;
-
-export const Overview = styled.div`
-  margin-bottom: 16px;
-
-  @media screen and (min-width: 768px) {
-    margin-bottom: 24px;
   }
 `;
