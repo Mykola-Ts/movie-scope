@@ -56,6 +56,7 @@ export const Poster = styled.img`
   border-radius: 8px;
 
   @media screen and (max-width: 767px) {
+    width: 100%;
     margin-bottom: 16px;
   }
 `;
@@ -63,12 +64,16 @@ export const Poster = styled.img`
 export const Title = styled.h1`
   margin-bottom: 16px;
 
-  font-size: 24px;
-  line-height: 1.17;
-  letter-spacing: 0.96px;
+  font-size: 22px;
+  line-height: normal;
+  letter-spacing: 0.44px;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 24px;
+
+    font-size: 24px;
+    line-height: 1.17;
+    letter-spacing: 0.96px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -94,6 +99,18 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
   font-weight: 700;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2px 8px;
+  }
+
+  &.column {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
   & ul {
     @media screen and (min-width: 1440px) {

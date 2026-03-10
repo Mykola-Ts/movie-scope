@@ -126,6 +126,28 @@ export const MovieDescr = ({ movieDetails }) => {
           <ListItem>
             Popularity: <DescrValue>{moviePopularity}</DescrValue>
           </ListItem>
+
+          {production_countries.length > 0 && (
+            <ListItem>
+              <p>Production countries:</p>
+              <ListValues>
+                {production_countries.map(({ iso_3166_1, name }) => (
+                  <li key={iso_3166_1}>{name}</li>
+                ))}
+              </ListValues>
+            </ListItem>
+          )}
+
+          {production_companies.length > 0 && (
+            <ListItem>
+              <p>Production companies:</p>
+              <ListValues>
+                {production_companies.map(({ id, name }) => (
+                  <li key={id}>{name}</li>
+                ))}
+              </ListValues>
+            </ListItem>
+          )}
         </List>
       </Wrapper>
 
@@ -137,33 +159,11 @@ export const MovieDescr = ({ movieDetails }) => {
           </ListItem>
         )}
 
-        {production_countries.length > 0 && (
-          <ListItem>
-            <p>Production countries:</p>
-            <ListValues>
-              {production_countries.map(({ iso_3166_1, name }) => (
-                <li key={iso_3166_1}>{name}</li>
-              ))}
-            </ListValues>
-          </ListItem>
-        )}
-
-        {production_companies.length > 0 && (
-          <ListItem>
-            <p>Production companies:</p>
-            <ListValues>
-              {production_companies.map(({ id, name }) => (
-                <li key={id}>{name}</li>
-              ))}
-            </ListValues>
-          </ListItem>
-        )}
-
         <ListItem>
           Vote average: <DescrValue>{voteAverage}</DescrValue>
         </ListItem>
 
-        <ListItem>
+        <ListItem className="column">
           <p>Rating</p>
           <Rating
             readonly={true}
