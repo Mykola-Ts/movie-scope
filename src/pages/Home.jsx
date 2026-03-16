@@ -47,6 +47,7 @@ const Home = () => {
 
   const changeTrendingTimeWindow = timeWindow => {
     searchParams.set('time_window', timeWindow);
+    searchParams.delete('page');
 
     setSearchParams(searchParams);
     setTimeWindow(trendingTimeWindow[timeWindow].value);
@@ -54,7 +55,11 @@ const Home = () => {
   };
 
   const onClickShowMoreBtn = () => {
-    setPage(prev => (prev += 1));
+    const newPage = page + 1;
+
+    setPage(newPage);
+    searchParams.set('page', newPage);
+    setSearchParams(searchParams);
   };
 
   return (
