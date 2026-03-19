@@ -8,6 +8,26 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const VideoList = styled.ul`
+  margin-bottom: 20px;
+
+  &.short-list {
+    li:not(:first-child) {
+      position: absolute;
+
+      width: 1px;
+      height: 1px;
+      border: 0;
+      padding: 0;
+      margin: -1px;
+
+      overflow: hidden;
+      white-space: nowrap;
+      clip-path: inset(100%);
+    }
+  }
+`;
+
 export const VideoListItem = styled.li`
   max-width: 800px;
 

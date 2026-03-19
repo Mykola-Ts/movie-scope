@@ -1,11 +1,18 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { getMovieVideos } from 'services/movies';
-import { VideoIframe, VideoListItem, Wrapper } from './MovieVideos.styled';
+import {
+  VideoIframe,
+  VideoList,
+  VideoListItem,
+  Wrapper,
+} from './MovieVideos.styled';
 import { MovieDescrSubTitle } from 'components/MovieDescr/MovieDescr.styled';
+import { StyledButton } from 'components/ShowMoreBtn/ShowMoreBtn.styled';
 
 export const MovieVideos = ({ movieId }) => {
   const [videos, setVideos] = useState([]);
+  const [isShowAllVideos, setIsShowAllVideos] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -21,12 +28,16 @@ export const MovieVideos = ({ movieId }) => {
     ({ type, site }) => site === 'YouTube' && type === 'Trailer'
   );
 
+  const onClickShowMoreBtn = () => {
+    setIsShowAllVideos(prev => !prev);
+  };
+
   return (
     videos.length > 0 && (
       <Wrapper>
         <MovieDescrSubTitle>Trailers</MovieDescrSubTitle>
 
-        <ul>
+        <VideoList className={isShowAllVideos ? '' : 'short-list'}>
           {trailers.map(({ key }) => (
             <VideoListItem key={key}>
               <VideoIframe
@@ -39,7 +50,11 @@ export const MovieVideos = ({ movieId }) => {
               ></VideoIframe>
             </VideoListItem>
           ))}
-        </ul>
+        </VideoList>
+
+        <StyledButton type="button" onClick={onClickShowMoreBtn}>
+          {isShowAllVideos ? 'Show less trailers' : 'Show more trailers'}
+        </StyledButton>
       </Wrapper>
     )
   );
