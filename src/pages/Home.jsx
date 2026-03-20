@@ -43,7 +43,7 @@ const Home = () => {
       controllerRef.current.abort();
       toast.remove();
     };
-  }, [timeWindow, page, totalPages]);
+  }, [timeWindow, page]);
 
   const changeTrendingTimeWindow = timeWindow => {
     searchParams.set('time_window', timeWindow);

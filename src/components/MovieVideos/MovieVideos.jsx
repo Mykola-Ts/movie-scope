@@ -52,9 +52,11 @@ export const MovieVideos = ({ movieId }) => {
           ))}
         </VideoList>
 
-        <StyledButton type="button" onClick={onClickShowMoreBtn}>
-          {isShowAllVideos ? 'Show less trailers' : 'Show more trailers'}
-        </StyledButton>
+        {trailers.length > 1 && (
+          <StyledButton type="button" onClick={onClickShowMoreBtn}>
+            {isShowAllVideos ? 'Show less trailers' : 'Show more trailers'}
+          </StyledButton>
+        )}
       </Wrapper>
     )
   );

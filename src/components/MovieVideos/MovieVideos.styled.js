@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
+const maxWdthContainer = '800px';
+
 export const Wrapper = styled.div`
+  max-width: ${maxWdthContainer};
   margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
@@ -29,7 +32,7 @@ export const VideoList = styled.ul`
 `;
 
 export const VideoListItem = styled.li`
-  max-width: 800px;
+  max-width: ${maxWdthContainer};
 
   aspect-ratio: 16 / 9;
 

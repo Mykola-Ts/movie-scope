@@ -31,7 +31,7 @@ export const MovieImages = ({ movieId, movieName }) => {
     <SwiperWrap>
       <MovieDescrSubTitle>Images</MovieDescrSubTitle>
 
-      <BaseSwiper>
+      <BaseSwiper mousewheel={false}>
         <PhotosList>
           {images.map(({ file_path }) => (
             <PhotosListItem key={file_path}>
