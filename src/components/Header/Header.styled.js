@@ -1,11 +1,19 @@
 import styled from 'styled-components';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const NavHeader = styled.header`
+  position: relative;
+  z-index: 10;
+
   width: 100%;
   border: 2px solid var(--white-color);
   border-radius: 0px 0px 8px 8px;
   padding-top: 20px;
+
+  @media screen and (max-width: 767px) {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
 `;
 
 export const Logo = styled(Link)`
@@ -26,44 +34,27 @@ export const Logo = styled(Link)`
 export const Navigation = styled.header`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
-export const NavList = styled.ul`
+export const MobileMenuBtn = styled.button`
   display: flex;
-`;
+  justify-content: center;
+  align-items: center;
 
-export const StyledLink = styled(NavLink)`
-  display: block;
-
-  min-width: 100px;
-  border: 2px solid var(--white-color);
-  border-bottom: none;
-  border-radius: 12px 12px 0px 0px;
-  padding: 8px;
-
-  text-align: center;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1.33;
-  letter-spacing: 0.36px;
+  border: none;
+  padding: 0;
 
   color: currentColor;
+  background-color: transparent;
 
-  transition: color var(--transition-duration) var(--transition-timing-function),
-    background-color var(--transition-duration)
-      var(--transition-timing-function);
+  transition: color var(--transition-duration) var(--transition-timing-function);
 
-  &:is(:hover, :focus),
-  &.active {
-    color: var(--black-color);
-    background-color: var(--gray-active-color);
+  &:is(:hover, :focus, :active) {
+    color: inherit;
   }
 
   @media screen and (min-width: 768px) {
-    min-width: 140px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    min-width: 200px;
+    display: none;
   }
 `;
