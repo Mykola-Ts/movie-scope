@@ -50,6 +50,11 @@ export const MoviesSearchForm = ({
     };
   };
 
+  const onClickResetBtn = () => {
+    onReset();
+    setInputQuery('');
+  };
+
   return (
     <SearchbarForm onSubmit={onSearchMovie}>
       <InputLabel>
@@ -60,8 +65,10 @@ export const MoviesSearchForm = ({
           placeholder="Movie title"
           onInput={evt => setInputQuery(evt.target.value)}
         />
+
         <SearchIcon />
-        {inputQuery && <CloseIcon onClick={onReset} />}
+
+        {inputQuery && <CloseIcon onClick={onClickResetBtn} />}
       </InputLabel>
 
       <SubmitBtn type="submit">Search</SubmitBtn>
