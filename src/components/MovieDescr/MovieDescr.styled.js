@@ -31,7 +31,7 @@ export const Wrapper = styled.div`
 `;
 
 export const MovieDescrSubTitle = styled.p`
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 
   font-size: 18px;
   font-weight: 700;

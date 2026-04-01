@@ -23,6 +23,10 @@ export const Wrapper = styled.div`
 
 export const Links = styled.ul`
   display: flex;
+
+  @media screen and (max-width: 767px) {
+    justify-content: center;
+  }
 `;
 
 export const LinksItem = styled.li`

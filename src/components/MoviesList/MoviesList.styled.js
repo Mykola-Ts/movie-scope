@@ -4,10 +4,16 @@ import { Link } from 'react-router-dom';
 export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 40px 24px;
+  gap: 28px 16px;
 
   width: 100%;
-  padding: 40px 0;
+  padding: 24px 0;
+
+  @media screen and (min-width: 768px) {
+    gap: 40px 24px;
+
+    padding: 40px 0;
+  }
 `;
 
 export const ListItem = styled.li`
@@ -25,7 +31,8 @@ export const ListItem = styled.li`
   background-color: var(--gray-color);
   box-shadow: var(--box-shadow);
 
-  transition: background-color var(--transition-duration)
+  transition:
+    background-color var(--transition-duration)
       var(--transition-timing-function),
     transform var(--transition-duration) var(--transition-timing-function);
 

@@ -5,6 +5,12 @@ export const ButtonList = styled.ul`
   justify-content: center;
 
   margin-bottom: 24px;
+
+  @media screen and (max-width: 374px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
 `;
 
 export const ButtonListItem = styled.li`
@@ -14,6 +20,16 @@ export const ButtonListItem = styled.li`
 
   &:last-child button {
     border-radius: 0px 8px 8px 0px;
+  }
+
+  @media screen and (max-width: 374px) {
+    &:first-child button {
+      border-radius: 8px 8px 0px 0px;
+    }
+
+    &:last-child button {
+      border-radius: 0px 0px 8px 8px;
+    }
   }
 `;
 
@@ -26,7 +42,8 @@ export const ChangePeriodBtn = styled.button`
   background-color: var(--gray-color);
   outline: 2px solid transparent;
 
-  transition: background-color var(--transition-duration)
+  transition:
+    background-color var(--transition-duration)
       var(--transition-timing-function),
     border-color var(--transition-duration) var(--transition-timing-function),
     outline var(--transition-duration) var(--transition-timing-function);

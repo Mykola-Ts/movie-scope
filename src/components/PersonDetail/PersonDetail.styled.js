@@ -17,12 +17,16 @@ export const Details = styled.div`
 export const Name = styled.h1`
   margin-bottom: 16px;
 
-  font-size: 24px;
-  line-height: 1.17;
-  letter-spacing: 0.96px;
+  font-size: 22px;
+  line-height: normal;
+  letter-spacing: 0.44px;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 24px;
+
+    font-size: 24px;
+    line-height: 1.17;
+    letter-spacing: 0.96px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -51,12 +55,13 @@ export const Photo = styled.img`
   max-width: 342px;
   border-radius: 8px;
 
-  &.gallery {
+  @media screen and (max-width: 767px) {
     width: 100%;
+    margin-bottom: 16px;
   }
 
-  @media screen and (max-width: 767px) {
-    margin-bottom: 16px;
+  &.gallery {
+    width: 100%;
   }
 `;
 
@@ -68,6 +73,7 @@ export const DetailsList = styled.ul`
 
 export const DetailsListItem = styled.li`
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 
   font-weight: 700;
@@ -115,10 +121,18 @@ export const DetailsSubTitle = styled.p`
 export const PhotosList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 16px;
+
+  @media screen and (min-width: 768px) {
+    gap: 40px;
+  }
 `;
 
 export const PhotosListItem = styled.li`
-  width: calc((100% - 40px) / 2);
+  width: 100%;
   max-width: 342px;
+
+  @media screen and (min-width: 768px) {
+    width: calc((100% - 40px) / 2);
+  }
 `;
