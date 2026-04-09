@@ -4,7 +4,7 @@ export const ButtonList = styled.ul`
   display: flex;
   justify-content: center;
 
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 
   @media screen and (max-width: 374px) {
     flex-direction: column;

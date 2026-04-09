@@ -21,6 +21,12 @@ export const NavList = styled.ul`
     line-height: 28px;
     letter-spacing: 0.5px;
 
+    & li {
+      @media screen and (max-width: 767px) {
+        width: 100%;
+      }
+    }
+
     & a {
       padding: 8px;
     }

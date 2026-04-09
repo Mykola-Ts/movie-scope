@@ -23,3 +23,10 @@ export const MobileMenuWrap = styled.div`
     display: none;
   }
 `;
+
+export const MobileMenuContainer = styled.div`
+  max-width: 375px;
+  height: 100%;
+  padding: 72px 15px;
+  margin: 0 auto;
+`;

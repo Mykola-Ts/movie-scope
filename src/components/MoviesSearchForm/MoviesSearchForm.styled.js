@@ -6,16 +6,24 @@ export const SearchbarForm = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
+
+  @media screen and (max-width: 374px) {
+    flex-direction: column;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 40px;
+  }
 `;
 
 export const InputLabel = styled.label`
   position: relative;
 
   width: 100%;
-  margin-right: 20px;
 
   @media screen and (min-width: 1440px) {
     width: 800px;
@@ -36,7 +44,8 @@ export const SearchInput = styled.input`
   background-color: var(--gray-color);
   outline: 2px solid transparent;
 
-  transition: background-color var(--transition-duration)
+  transition:
+    background-color var(--transition-duration)
       var(--transition-timing-function),
     border-color var(--transition-duration) var(--transition-timing-function),
     outline var(--transition-duration) var(--transition-timing-function);
@@ -78,7 +87,8 @@ export const SubmitBtn = styled.button`
   background-color: var(--gray-color);
   outline: 2px solid transparent;
 
-  transition: background-color var(--transition-duration)
+  transition:
+    background-color var(--transition-duration)
       var(--transition-timing-function),
     border-color var(--transition-duration) var(--transition-timing-function),
     outline var(--transition-duration) var(--transition-timing-function);

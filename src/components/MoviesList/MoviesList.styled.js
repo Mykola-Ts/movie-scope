@@ -7,7 +7,7 @@ export const List = styled.ul`
   gap: 28px 16px;
 
   width: 100%;
-  padding: 24px 0;
+  padding: 28px 0;
 
   @media screen and (min-width: 768px) {
     gap: 40px 24px;
