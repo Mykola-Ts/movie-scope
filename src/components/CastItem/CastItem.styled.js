@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const Photo = styled.img`
   width: 184px;
+  border-radius: 8px;
 
   @media screen and (max-width: 767px) {
     margin: 0 auto;
@@ -15,7 +16,7 @@ export const Photo = styled.img`
 `;
 
 export const Descr = styled.div`
-  padding: 16px;
+  margin-top: 16px;
 
   font-size: 18px;
   line-height: 1.33;
@@ -53,7 +54,11 @@ export const Name = styled.h4`
 
 export const DescrItem = styled.p`
   &:not(:last-child) {
-    margin-bottom: 8px;
+    margin-bottom: 4px;
+
+    @media screen and (min-width: 768px) {
+      margin-bottom: 8px;
+    }
   }
 `;
 

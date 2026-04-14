@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Wrapper = styled.div`
-  margin-bottom: 16px;
+  margin-bottom: 28px;
 
   font-size: 18px;
   line-height: 1.33;

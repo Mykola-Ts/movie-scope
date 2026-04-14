@@ -12,6 +12,7 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
   border-radius: 8px;
+  padding: 16px;
 
   overflow: hidden;
 

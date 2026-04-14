@@ -64,9 +64,11 @@ export const CastItem = ({ castItem, state }) => {
           <Name>{name}</Name>
         </StyledLink>
 
-        <DescrItem>
-          Character: <DescrItemValue>{character}</DescrItemValue>
-        </DescrItem>
+        {character && (
+          <DescrItem>
+            Character: <DescrItemValue>{character}</DescrItemValue>
+          </DescrItem>
+        )}
 
         <DescrItem>
           Popularity: <DescrItemValue>{popularityItem}</DescrItemValue>

@@ -98,14 +98,12 @@ export const List = styled.ul`
 `;
 
 export const ListItem = styled.li`
-  font-weight: 700;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px 8px;
 
-  @media screen and (min-width: 768px) {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 2px 8px;
-  }
+  font-weight: 700;
 
   &.column {
     flex-direction: column;
