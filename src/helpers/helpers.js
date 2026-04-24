@@ -73,3 +73,20 @@ export function formatDate(dateString) {
 
   return formatted;
 }
+
+export const checkClamping = (
+  itemRef,
+  qtyLineClamped,
+  setIsExpanded,
+  setIsClamped
+) => {
+  if (!itemRef?.current) return setIsExpanded(true);
+
+  const lineHeight = parseFloat(getComputedStyle(itemRef.current).lineHeight);
+  const maxHeight = Number((lineHeight * qtyLineClamped).toFixed());
+  const reviewDescrScrollHeight = itemRef.current?.scrollHeight;
+
+  if (reviewDescrScrollHeight > maxHeight) {
+    setIsClamped(true);
+  } else if (reviewDescrScrollHeight < maxHeight) setIsClamped(false);
+};

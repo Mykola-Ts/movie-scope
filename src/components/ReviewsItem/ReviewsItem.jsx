@@ -1,19 +1,44 @@
 import PropTypes from 'prop-types';
+import { useEffect, useRef, useState } from 'react';
 import { HiLink } from 'react-icons/hi';
-import { stripHTML } from 'helpers/helpers';
+import { checkClamping, stripHTML } from 'helpers/helpers';
 import {
   Avatar,
   AvatarWrapper,
+  ClambToggleBtn,
   Descr,
   DescrItem,
+  DescrWrap,
   Name,
   ReviewLink,
   Wrapper,
 } from './ReviewsItem.styled';
 
 const AVATARS_BASE_URL = 'https://image.tmdb.org/t/p/';
+const qtyLineClamped = 10;
 
 export const ReviewsItem = ({ review }) => {
+  const [isClamped, setIsClamped] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const reviewDescrRef = useRef(null);
+
+  useEffect(() => {
+    const checkClampingReview = () => {
+      checkClamping(
+        reviewDescrRef,
+        qtyLineClamped,
+        setIsExpanded,
+        setIsClamped
+      );
+    };
+
+    checkClampingReview();
+
+    window.addEventListener('resize', checkClampingReview);
+
+    return () => window.removeEventListener('resize', checkClampingReview);
+  }, []);
+
   if (!review) return;
 
   const { author, content, created_at = '', url, author_details } = review;
@@ -50,7 +75,25 @@ export const ReviewsItem = ({ review }) => {
 
       {createdDate !== 'Invalid Date' && <Descr>{createdDate}</Descr>}
 
-      {content && <Descr>{stripHTML(content)}</Descr>}
+      {content && (
+        <DescrWrap>
+          <Descr
+            $lines={isExpanded ? 'none' : qtyLineClamped}
+            ref={reviewDescrRef}
+          >
+            {stripHTML(content)}
+          </Descr>
+
+          {isClamped && (
+            <ClambToggleBtn
+              type="button"
+              onClick={() => setIsExpanded(!isExpanded ? true : false)}
+            >
+              {!isExpanded ? 'Show all' : 'Show less'}
+            </ClambToggleBtn>
+          )}
+        </DescrWrap>
+      )}
 
       {url && (
         <ReviewLink href={url} target="_blank" rel="noopener noreferrer">
