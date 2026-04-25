@@ -5,6 +5,10 @@ export const List = styled.ul`
 `;
 
 export const ListItem = styled.li`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
   border-radius: 8px;
   padding: 16px;
 

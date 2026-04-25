@@ -8,10 +8,11 @@ import {
   ClambToggleBtn,
   Descr,
   DescrItem,
-  DescrWrap,
+  DescrContentWrap,
   Name,
   ReviewLink,
   Wrapper,
+  DescrMetaWrap,
 } from './ReviewsItem.styled';
 
 const AVATARS_BASE_URL = 'https://image.tmdb.org/t/p/';
@@ -69,14 +70,16 @@ export const ReviewsItem = ({ review }) => {
         {author && <Name>{author}</Name>}
       </Wrapper>
 
-      <Descr>
-        Author rating: <DescrItem>{rating || 0}</DescrItem>
-      </Descr>
+      <DescrMetaWrap>
+        <Descr>
+          Author rating: <DescrItem>{rating || 0}</DescrItem>
+        </Descr>
 
-      {createdDate !== 'Invalid Date' && <Descr>{createdDate}</Descr>}
+        {createdDate !== 'Invalid Date' && <Descr>{createdDate}</Descr>}
+      </DescrMetaWrap>
 
       {content && (
-        <DescrWrap>
+        <DescrContentWrap>
           <Descr
             $lines={isExpanded ? 'none' : qtyLineClamped}
             ref={reviewDescrRef}
@@ -89,15 +92,15 @@ export const ReviewsItem = ({ review }) => {
               type="button"
               onClick={() => setIsExpanded(!isExpanded ? true : false)}
             >
-              {!isExpanded ? 'Show all' : 'Show less'}
+              {!isExpanded ? 'Show more' : 'Show less'}
             </ClambToggleBtn>
           )}
-        </DescrWrap>
+        </DescrContentWrap>
       )}
 
       {url && (
         <ReviewLink href={url} target="_blank" rel="noopener noreferrer">
-          <HiLink /> Link to review
+          <HiLink /> View original review
         </ReviewLink>
       )}
     </>

@@ -4,8 +4,6 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-
-  margin-bottom: 8px;
 `;
 
 export const AvatarWrapper = styled.div`
@@ -37,18 +35,27 @@ export const Avatar = styled.img`
   object-fit: cover;
 `;
 
+export const DescrMetaWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    gap: 4px;
+  }
+`;
+
 export const Name = styled.h4`
   font-size: 22px;
   line-height: normal;
   letter-spacing: 0.44px;
 `;
 
-export const DescrWrap = styled.div`
+export const DescrContentWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-
-  margin-bottom: 8px;
 `;
 
 export const Descr = styled.p`
@@ -64,7 +71,7 @@ export const DescrItem = styled.span`
 `;
 
 export const ClambToggleBtn = styled.button`
-  border: 2px solid var(--black-color);
+  border: none;
   border-radius: 8px;
   padding: 2px 4px;
   margin-left: auto;
@@ -76,17 +83,42 @@ export const ClambToggleBtn = styled.button`
   transition:
     background-color var(--transition-duration)
       var(--transition-timing-function),
-    border-color var(--transition-duration) var(--transition-timing-function),
     outline var(--transition-duration) var(--transition-timing-function);
 
   &:is(:hover, :focus),
   &.active {
     background-color: var(--white-color);
-    border-color: var(--black-color);
     outline-color: var(--white-color);
   }
 `;
 
 export const ReviewLink = styled.a`
+  position: relative;
+
+  align-self: flex-start;
+
   color: var(--active-color);
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: 0;
+    transform: scaleX(0);
+    transform-origin: center;
+
+    display: block;
+
+    width: 100%;
+    height: 1.5px;
+
+    background-color: currentColor;
+
+    transition: transform var(--transition-duration)
+      var(--transition-timing-function);
+  }
+
+  &:is(:hover, :focus)::after {
+    transform: scaleX(1);
+  }
 `;
