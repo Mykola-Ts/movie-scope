@@ -78,9 +78,16 @@ export const MovieDescr = ({ movieDetails }) => {
             Original title: <DescrValue>{original_title}</DescrValue>
           </ListItem>
 
+          {releaseDate !== 'Invalid Date' && (
+            <ListItem>
+              Release date: <DescrValue>{releaseDate}</DescrValue>
+            </ListItem>
+          )}
+
           {genres.length > 0 && (
             <ListItem>
               <p>Genres:</p>
+
               <ListValues>
                 {genres.map(({ id, name }) => (
                   <li key={id}>{name}</li>
@@ -88,6 +95,10 @@ export const MovieDescr = ({ movieDetails }) => {
               </ListValues>
             </ListItem>
           )}
+
+          <ListItem>
+            Popularity: <DescrValue>{moviePopularity}</DescrValue>
+          </ListItem>
 
           {runtime > 0 && (
             <ListItem>
@@ -105,12 +116,6 @@ export const MovieDescr = ({ movieDetails }) => {
             Original language: <DescrValue>{original_language}</DescrValue>
           </ListItem>
 
-          {releaseDate !== 'Invalid Date' && (
-            <ListItem>
-              Release date: <DescrValue>{releaseDate}</DescrValue>
-            </ListItem>
-          )}
-
           {budget > 0 && (
             <ListItem>
               Budget: <DescrValue>${budget}</DescrValue>
@@ -123,13 +128,10 @@ export const MovieDescr = ({ movieDetails }) => {
             </ListItem>
           )}
 
-          <ListItem>
-            Popularity: <DescrValue>{moviePopularity}</DescrValue>
-          </ListItem>
-
           {production_countries.length > 0 && (
             <ListItem>
               <p>Production countries:</p>
+
               <ListValues>
                 {production_countries.map(({ iso_3166_1, name }) => (
                   <li key={iso_3166_1}>{name}</li>
@@ -164,7 +166,6 @@ export const MovieDescr = ({ movieDetails }) => {
         </ListItem>
 
         <ListItem className="column">
-          <p>Rating</p>
           <Rating
             readonly={true}
             stop={10}

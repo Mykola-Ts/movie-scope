@@ -17,16 +17,11 @@ export const VideoList = styled.ul`
   &.short-list {
     li:not(:first-child) {
       position: absolute;
+      top: 0;
+      left: 0;
 
-      width: 1px;
-      height: 1px;
-      border: 0;
-      padding: 0;
-      margin: -1px;
-
-      overflow: hidden;
-      white-space: nowrap;
-      clip-path: inset(100%);
+      opacity: 0;
+      pointer-events: none;
     }
   }
 `;
