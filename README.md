@@ -54,7 +54,7 @@ components that together provide full movie browsing and search functionality.
 - **Movie Details Page** — displays comprehensive information about a selected
   movie, including its overview, key metadata (such as release date, rating, and
   genres), and related content. The page serves as a focused view for exploring
-  a specific title in detail.
+  a specific title in detail and also allows users to watch movie trailers.
 
 - **Person Details Page** — provides detailed information about a selected film
   industry professional, including personal data (gender, date of birth, place
@@ -113,6 +113,7 @@ components that together provide full movie browsing and search functionality.
 
 - [axios](https://axios-http.com/) — promise-based HTTP client;
 - [modern-normalize](https://github.com/sindresorhus/modern-normalize) —
+  normalize default browser styles;
 - [nanoid](https://www.npmjs.com/package/nanoid) — unique ID generator;
 - [react](https://react.dev/) — core library for building user interfaces;
 - [react-dom](https://www.npmjs.com/package/react-dom) — DOM-specific methods
@@ -213,7 +214,8 @@ components that together provide full movie browsing and search functionality.
   - production countries and companies;
   - budget and revenue;
   - popularity score, average rating, and vote count;
-  - movie overview and plot description.
+  - movie overview and plot description;
+  - ability to watch movie trailers.
 
 - **Additional Information about movie**  
   The movie details page includes an Additional information section with
@@ -238,6 +240,10 @@ components that together provide full movie browsing and search functionality.
   Enhances navigation and usability, especially on long or content-heavy pages.
   Appears when scrolling down and allows users to quickly return to the top of
   the page.
+
+- **Responsive Design**  
+  Optimized for desktop, tablet, and mobile devices, ensuring a seamless
+  experience across all screen sizes.
 
 - **Keyboard Accessibility**  
   Modal windows and navigation elements support keyboard interactions (e.g., Esc
